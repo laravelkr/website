@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\Github\AllContributors;
+use App\Services\AllContributors\Contributors;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
 
@@ -20,9 +20,10 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
+     * @param Contributors $allContributors
      * @return Factory|View
      */
-    public function index(AllContributors $allContributors)
+    public function index(Contributors $allContributors)
     {
         $lastVersion = config('docs.default');
 

@@ -99,6 +99,12 @@
         .active-blog-slider .banner-content p {
             font-size: 1.2rem
         }
+        #contributors .list > div {
+            text-align: center;
+            width: 120px;
+            padding: 10px;
+            border:1px solid #eee;
+        }
     </style>
 </head>
 <body>
@@ -403,7 +409,7 @@
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center table-responsive">
+        <div class="row list">
 
             {!! $contributorsHtml !!}
         </div>
