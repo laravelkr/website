@@ -282,124 +282,6 @@
 <!-- End about Area -->
 
 
-<!-- Start project Area -->
-<section class="project-area section-gap" id="project">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-30 col-lg-8">
-                <div class="title text-center">
-                    <h1 class="mb-10">모던 PHP 유저그룹 정기 모임 안내</h1>
-                    <p>모던 PHP 유저그룹은 매월 첫째주 수요일 강남에서 정기모임을 가지고 있습니다</p>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center d-flex">
-            <div class="active-works-carousel mt-40 col-lg-8">
-                <div class="item">
-                    <a href="https://github.com/ModernPUG/meetup/tree/master/2018_06" target="_blank">
-                    <img class="img-fluid"
-                         src="/assets/images/presentation/2018-06/modernPHP without framework.png"
-                         alt="Modern PHP Without a Framework">
-                    <div class="caption text-center mt-20">
-                            <h6 class="text-uppercase">6월 발표자 - 주영익 님</h6>
-                            <p>Modern PHP Without a Framework</p>
-                    </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="https://www.slideshare.net/lazyfri13th/reactive-programming-in-php" target="_blank">
-                    <img class="img-fluid"
-                         src="/assets/images/presentation/2018-07/Reactive programming in PHP.png"
-                         alt="Reactive programming in PHP">
-                    <div class="caption text-center mt-20">
-                            <h6 class="text-uppercase">7월 발표자 - 박종희 님</h6>
-                            <p>Reactive programming in PHP</p>
-                    </div>
-                    </a>
-                </div>
-                <div class="item">
-                    <a href="https://docs.google.com/presentation/d/e/2PACX-1vTzVc77rksQZBsXSL0sgyRjUflwW3_bpTQttyvkvZ3lRGd97h03D29PTzmUr9QYIR2UvLPKfYT71a1A/pub?start=false&loop=false&delayms=60000&slide=id.p"
-                       target="_blank">
-                    <img class="img-fluid"
-                         src="/assets/images/presentation/2018-07/ELK log tracking.png"
-                         alt="ELK 로깅 플랫폼 후기">
-                    <div class="caption text-center mt-20">
-                            <h6 class="text-uppercase">7월 발표자 - 김주원 님</h6>
-                            <p>ELK 로깅 플랫폼 후기</p>
-                    </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End project Area -->
-
-
-<!-- Start gallery Area -->
-<section class="gallery-area section-gap" id="gallery">
-    <div class="container">
-        <div class="row d-flex justify-content-center">
-            <div class="menu-content pb-30 col-lg-8">
-                <div class="title text-center">
-                    <h1 class="mb-10">주요 행사 후기</h1>
-                    <p>각종 모임의 행사 후기입니다</p>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid">
-        <div class="row no-padding">
-            <div class="active-gallery">
-                <div class="item single-gallery">
-                    <a href="https://www.facebook.com/photo.php?fbid=10203425690599133&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="_blank">
-                        <img src="/assets/images/main/19665562_10203425690599133_6127978943609650341_n.jpg">
-                    </a>
-                </div>
-                <div class="item single-gallery">
-                    <a href="https://www.facebook.com/photo.php?fbid=10156127257431953&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="_blank">
-                        <img src="/assets/images/main/30653154_10156127257436953_3192556148687372288_n.jpg">
-                    </a>
-                </div>
-                <div class="item single-gallery">
-                    <a href="https://www.facebook.com/photo.php?fbid=10204105451552732&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="_blank">
-                        <img src="/assets/images/main/26166147_10204105451552732_2680490098430023505_n.jpg">
-                    </a>
-                </div>
-                <div class="item single-gallery">
-                    <a href="https://www.facebook.com/photo.php?fbid=10204105449432679&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="">
-                        <img src="/assets/images/main/26165670_10204105449432679_2635151206788777643_n.jpg">
-                    </a>
-                </div>
-                <div class="item single-gallery">
-                    <a href="https://www.facebook.com/photo.php?fbid=1585875408145874&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="_blank">
-                        <img src="/assets/images/main/21200462_1585875408145874_8492142344668971492_o.jpg">
-                    </a>
-                </div>
-                <div class="item single-gallery">
-                    <a href="https://www.facebook.com/photo.php?fbid=1412333888821127&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="_blank">
-                        <img src="/assets/images/main/20770343_1412333888821127_139072671980159477_n.jpg">
-                    </a>
-                </div>
-                <div class="item single-gallery">
-                    <a href="https://www.facebook.com/photo.php?fbid=1551294671603948&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="_blank">
-                        <img src="/assets/images/main/20293004_1551294671603948_400930638504901233_n.jpg">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End gallery Area -->
-
-
 <!-- Start feature Area -->
 <section class="feature-area section-gap" id="secvice">
     <div class="container">
@@ -507,6 +389,29 @@
     </div>
 </section>
 <!-- End feature Area -->
+
+
+
+<!-- Start feature Area -->
+<section class="feature-area section-gap" id="contributors">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">CONTRIBUTORS</h1>
+                    <p>이 사이트가 운영될 수 있도록 기여해주신 분들입니다</p>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center table-responsive">
+
+            {!! $contributorsHtml !!}
+        </div>
+    </div>
+</section>
+<!-- End feature Area -->
+
+
 
 {{--
 

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Services\Github\AllContributors;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
+
 class HomeController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
      * @return void
      */
     public function __construct()
@@ -17,13 +20,15 @@ class HomeController extends Controller
 
     /**
      * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     * @return Factory|View
      */
-    public function index()
+    public function index(AllContributors $allContributors)
     {
         $lastVersion = config('docs.default');
 
-        return view('index', ['lastVersion' => $lastVersion]);
+        $contributorsHtml = $allContributors->getHtml();
+
+
+        return view('index', compact('lastVersion', 'contributorsHtml'));
     }
 }
