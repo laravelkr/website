@@ -516,9 +516,12 @@
                     <h6>Follow Us</h6>
                     <p>Let us be social</p>
                     <div class="footer-social d-flex align-items-center">
-                        <a href="https://www.facebook.com/groups/laravelkorea/"><i class="fa fa-facebook"></i></a>
-                        <a href="https://twitter.com/laravelkr"><i class="fa fa-twitter"></i></a>
-                        <a href="mailto:laravel@laravel.kr"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+                        <a href="https://github.com/laravelkr/" target="_blank"><i class="fa fa-github"></i></a>
+                        <a href="https://www.facebook.com/groups/laravelkorea/" target="_blank"><i
+                                    class="fa fa-facebook"></i></a>
+                        <a href="https://twitter.com/laravelkr" target="_blank"><i class="fa fa-twitter"></i></a>
+                        <a href="mailto:laravel@laravel.kr" target="_blank"><i class="fa fa-envelope"
+                                                                               aria-hidden="true"></i></a>
                     </div>
                 </div>
             </div>
