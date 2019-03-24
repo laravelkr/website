@@ -12,13 +12,23 @@
     <ul class="nav navbar-nav d-md-down-none">
         <li class="nav-item px-3"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="https://modernpug.github.io/php-the-right-way/" target="_blank">
-                PHP The Right Way
+            <a class="nav-link" href="https://wiki.modernpug.org/display/LAR/questions/all" target="_blank">
+                QNA
             </a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="https://wiki.modernpug.org/display/LAR/questions/all" target="_blank">
-                QNA
+            <a class="nav-link" href="https://github.com/laravelkr/website/issues/2" target="_blank">
+                라라벨로 만든 사이트
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="https://github.com/laravelkr/website/issues/3" target="_blank">
+                기타 학습자료
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link" href="https://github.com/laravelkr/website/issues/4" target="_blank">
+                스터디/행사
             </a>
         </li>
         <!-- Dropdown -->

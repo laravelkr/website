@@ -127,10 +127,24 @@
                      id="navbarSupportedContent">
                     <ul class="navbar-nav">
                         <li><a href="{{ route('home') }}">Home</a></li>
-                        <li><a href="https://modernpug.github.io/php-the-right-way/" target="_blank">PHP The Right
-                                Way</a>
+                        <li>
+                            <a href="https://wiki.modernpug.org/display/LAR/questions/all" target="_blank">QNA</a>
                         </li>
-                        <li><a href="https://wiki.modernpug.org/display/LAR/questions/all" target="_blank">QNA</a></li>
+                        <li>
+                            <a href="https://github.com/laravelkr/website/issues/2" target="_blank">
+                                라라벨로 만든 사이트
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/laravelkr/website/issues/3" target="_blank">
+                                기타 학습자료
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/laravelkr/website/issues/4" target="_blank">
+                                스터디/행사
+                            </a>
+                        </li>
                         <!-- Dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
