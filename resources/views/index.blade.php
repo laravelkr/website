@@ -159,6 +159,10 @@
                                    target="_blank">
                                     모던 PHP 유저 그룹
                                 </a>
+                                <a class="dropdown-item" href="https://open.kakao.com/o/g3dWlf0/"
+                                   target="_blank">
+                                    카카오톡 오픈채팅
+                                </a>
 
                             </div>
                         </li>
@@ -264,36 +268,56 @@
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-40 col-lg-8">
                 <div class="title text-center">
-                    <h1 class="mb-10">아름다운 코드를 사랑하세요? 우리도 그렇습니다!</h1>
-                    <p>The PHP Framework For Web Artisans</p>
+                    <h2 class="mb-10">유저 모임에서 우리를 만나주세요</h2>
+                    <p>라라벨 사용자들이 모여있는 곳에서 더 많은 정보를 나눠보세요</p>
                 </div>
             </div>
         </div>
-        <div class="single-info row mt-40">
-            <div class="col-lg-6 col-md-12 mt-120 text-center no-padding info-left">
-                <div class="info-thumb">
-                    <a href="https://www.facebook.com/photo.php?fbid=10214183039026023&set=g.655071604594451&type=1&theater&ifg=1"
-                       target="_blank">
-                        <img src="/assets/images/main/26168698_10214183039026023_5000849346559842528_n.jpg"
-                             class="img-fluid" alt="">
+        <div class="row">
+
+            <div class="col-lg-4 col-md-6 ">
+                <div class="single-feature mb-30">
+                    <a target="_blank" href="https://www.facebook.com/groups/laravelkorea/">
+                        <div class="title d-flex flex-row pb-20">
+                            <span class="lnr"><i class="fa fa-facebook-official text-primary" aria-hidden="true"></i></span>
+                            <h4>
+                                라라벨 코리아
+                            </h4>
+                        </div>
+                        <p>
+                            페이스북 그룹을 통해서 라라벨과 관련된 이야기를 나눌 수 있습니다
+                        </p>
                     </a>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 no-padding info-rigth">
-                <div class="info-content">
-                    <h2 class="pb-30">라라벨을 <br/> 사용하는 사람들을 <br/> 위한 공간</h2>
-                    <p>최근 수년동안 PHP는 정체기에 있었습니다. 많은 웹 어플리케이션이 PHP가 아닌 다른 언어로 대체 되었고, PHP는 언어적인 결함이 있는 언어, 잘못된 프로그래밍 습관을
-                        익히게 만드는 좋지 않은 언어로 인식되어 왔습니다.
-                    </p>
-                    <p>
-                        그렇지만 PHP 5.3 이후의 새로운 개발 방식과 라이브러리, 도구들이 적극적으로 개발되면서, 조금 늦었지만 PHP는 보다 모던하게 사용할 수 있는 방법을 찾아왔습니다.
-                        이러한 PHP 개발을 이제는 모던 PHP 라고 부르고 있습니다.
-                    </p>
-                    <p>
-                        <a href="https://getcomposer.org" target="_blank">Composer (PHP의 의존성 관리자)</a> 등장 이후, 새로운 프레임워크들도
-                        함께 등장하였고, 라라벨은
-                        4 버전부터 Composer를 도입하면서 빠르게 성장하여, 지금은 전세계적으로 가장 인기 있는 프레임워크가 되었습니다
-                    </p>
+            <div class="col-lg-4 col-md-6 ">
+                <div class="single-feature">
+                    <a href="https://www.facebook.com/groups/655071604594451/" target="_blank">
+                        <div class="title d-flex flex-row pb-20">
+                            <span class="lnr"><i class="fa fa-facebook-official text-primary" aria-hidden="true"></i></span>
+                            <h4>
+                                모던 PHP 유저그룹
+                            </h4>
+                        </div>
+                        <p>
+                            모던 PHP 유저 그룹은 PHP 5.3 이후의 새로운 개발 방식과 라이브러리, 도구를 적극적으로 습득하고 알리는 목적으로 시작되었습니다
+                        </p>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 ">
+                <div class="single-feature">
+                    <a href="https://open.kakao.com/o/g3dWlf0" target="_blank">
+                        <div class="title d-flex flex-row pb-20">
+                            <span class="lnr"><i class="fa fa-comment text-warning" aria-hidden="true"></i></span>
+                            <h4>
+                                라라벨 카카오톡 오픈채팅
+                            </h4>
+                        </div>
+                        <p>
+                            카카오톡 오픈채팅을 통해 다른 분들과 같이 학습을 해보세요
+                        </p>
+                    </a>
                 </div>
             </div>
         </div>
@@ -308,28 +332,12 @@
         <div class="row d-flex justify-content-center">
             <div class="menu-content pb-60 col-lg-8">
                 <div class="title text-center">
-                    <h1 class="mb-10">주요 참고 사이트</h1>
+                    <h2 class="mb-10">같이 알아 두면 좋아요</h2>
                     <p>라라벨 사용자를 위한 참고 사이트 입니다</p>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 ">
-                <div class="single-feature mb-30">
-                    <a href="{{route('docs.show')}}">
-                        <div class="title d-flex flex-row pb-20">
-                            <span class="lnr lnr-book"></span>
-                            <h4>
-                                매뉴얼
-                            </h4>
-                        </div>
-                        <p>
-                            {{ sprintf("%1.1f", head(array_keys(config('docs.versions')))) }}
-                            ~ {{ sprintf("%1.1f", last(array_keys(config('docs.versions')))) }} 버전까지의 한국어 매뉴얼을 확인할 수 있습니다
-                        </p>
-                    </a>
-                </div>
-            </div>
             <div class="col-lg-4 col-md-6 ">
                 <div class="single-feature mb-30">
                     <a target="_blank" href="https://modernpug.github.io/php-the-right-way/">
@@ -371,36 +379,6 @@
                         </div>
                         <p>
                             다양한 주제에 대해서 질문하고 의견을 나눌 수 있습니다
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 ">
-                <div class="single-feature mb-30">
-                    <a target="_blank" href="https://www.facebook.com/groups/laravelkorea/">
-                        <div class="title d-flex flex-row pb-20">
-                            <span class="lnr"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>
-                            <h4>
-                                라라벨 코리아
-                            </h4>
-                        </div>
-                        <p>
-                            페이스북 그룹을 통해서 라라벨과 관련된 이야기를 나눌 수 있습니다
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 ">
-                <div class="single-feature">
-                    <a href="https://www.facebook.com/groups/655071604594451/" target="_blank">
-                        <div class="title d-flex flex-row pb-20">
-                            <span class="lnr"><i class="fa fa-facebook-official" aria-hidden="true"></i></span>
-                            <h4>
-                                모던 PHP 유저그룹
-                            </h4>
-                        </div>
-                        <p>
-                            모던 PHP 유저 그룹은 PHP 5.3 이후의 새로운 개발 방식과 라이브러리, 도구를 적극적으로 습득하고 알리는 목적으로 시작되었습니다
                         </p>
                     </a>
                 </div>
