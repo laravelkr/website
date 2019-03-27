@@ -45,6 +45,10 @@
                    target="_blank">
                     모던 PHP 유저 그룹
                 </a>
+                <a class="dropdown-item" href="https://open.kakao.com/o/g3dWlf0/"
+                   target="_blank">
+                    카카오톡 오픈채팅
+                </a>
 
             </div>
         </li>
