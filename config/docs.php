@@ -35,8 +35,12 @@ return [
             'deprecatedAt' => '2019-09-04',
             'lts' => false,
         ],
+        '5.8' => [
+            'deprecatedAt' => '2019-09-04',
+            'lts' => false,
+        ],
     ],
-    'default' => '5.7',
+    'default' => '5.8',
     'resource_root' => 'documents',
     'basePath' => 'baseGit',
 
