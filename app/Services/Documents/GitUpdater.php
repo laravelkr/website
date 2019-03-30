@@ -57,6 +57,23 @@ class GitUpdater implements UpdateInterface
         $this->updateAllVersion();
     }
 
+    public function updateBaseGit()
+    {
+
+        $exitCheckDir = $this->location->getBaseLocation();
+
+        if (!File::exists($exitCheckDir)) {
+            $this->console->writeln("Docs git not exist");
+            return;
+        }
+
+        $this->console->writeln("Update start base repository");
+        $this->console->writeln(
+            exec(sprintf('cd %s && git pull origin 2>&1', $exitCheckDir))
+        );
+        $this->console->writeln("Update end base repository");
+    }
+
     protected function updateAllVersion(): void
     {
         foreach ($this->versions as $version) {
@@ -64,7 +81,7 @@ class GitUpdater implements UpdateInterface
             $this->location->setVersion($version);
 
             $this->initializeVersionDirectory($version);
-            $this->console->writeln("Update Start $version");
+            $this->console->writeln("Update start $version");
             $this->updateDocument($version);
             $this->console->writeln("Update end $version");
         }

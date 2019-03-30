@@ -31,6 +31,7 @@ class DocumentsUpdate extends Command
      */
     public function handle(UpdateInterface $docsUpdater)
     {
+        $docsUpdater->updateBaseGit();
         $docsUpdater->updateOnlyKoreanManualGit();
         $docsUpdater->updateWithKoreanManualGit();
     }

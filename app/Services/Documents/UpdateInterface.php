@@ -10,4 +10,6 @@ interface UpdateInterface
 
     public function updateWithKoreanManualGit();
 
+    public function updateBaseGit();
+
 }
