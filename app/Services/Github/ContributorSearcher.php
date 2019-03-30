@@ -10,7 +10,10 @@ namespace App\Services\Github;
 
 
 use App\Exceptions\BadArgumentsException;
+use App\Exceptions\ContributorNotFoundException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DomCrawler\Crawler;
 
 class ContributorSearcher
@@ -49,14 +52,20 @@ class ContributorSearcher
      * @param $fileName
      * @return array
      * @throws BadArgumentsException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
+     * @throws ContributorNotFoundException
      */
     public function getContributors($fileName): array
     {
 
-        $contributorsHtml = $this->searchContributors($fileName);
+        try {
 
-        $contributors = $this->convertHtmlToJson($contributorsHtml);
+            $contributorsHtml = $this->searchContributors($fileName);
+            $contributors = $this->convertHtmlToJson($contributorsHtml);
+        } catch (ContributorNotFoundException $exception) {
+            $contributors = [];
+        }
+
 
         return $contributors;
 
@@ -66,7 +75,8 @@ class ContributorSearcher
      * @param string $fileName
      * @return string
      * @throws BadArgumentsException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws ContributorNotFoundException
+     * @throws GuzzleException
      */
     private function searchContributors(string $fileName): string
     {
@@ -75,12 +85,17 @@ class ContributorSearcher
             throw new BadArgumentsException();
         }
 
-        $contributorsUrl = sprintf($this->baseUrl, "pre-kr-" . $this->branch, $fileName . ".md");
+        try {
+
+            $contributorsUrl = sprintf($this->baseUrl, "pre-kr-" . $this->branch, $fileName . ".md");
 
 
-        $res = $this->guzzle->request('GET', $contributorsUrl);
+            $res = $this->guzzle->request('GET', $contributorsUrl);
 
-        return $res->getBody()->getContents();
+            return $res->getBody()->getContents();
+        } catch (ClientException $exception) {
+            throw new ContributorNotFoundException();
+        }
 
     }
 

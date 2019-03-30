@@ -4,7 +4,9 @@
 namespace App\Services\Github;
 
 
+use App\Exceptions\CommitInformationNotFoundException;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 
 class CommitInformation
 {
@@ -24,18 +26,28 @@ class CommitInformation
 
     public function getLastCommitDate($owner, $repo, $branch, $file)
     {
-        $url = sprintf($this->baseUrl, $owner, $repo, urlencode($branch), urlencode($file));
-        $result = $this->client->get($url, [
-            'headers' => [
-                "Authorization" => "token " . config('github.token'),
-            ],
-        ])->getBody()->getContents();
+        try {
+            $url = sprintf($this->baseUrl, $owner, $repo, urlencode($branch), urlencode($file));
+            $result = $this->client->get($url, [
+                'headers' => [
+                    "Authorization" => "token " . config('github.token'),
+                ],
+            ])->getBody()->getContents();
 
 
-        $json = json_decode($result);
+            $json = json_decode($result);
 
-        $date = $json[0]->commit->author->date;
+            if (empty($json)) {
+                throw new CommitInformationNotFoundException();
+            }
 
-        return $date;
+            $date = $json[0]->commit->author->date;
+
+            return $date;
+        }
+        catch (\Exception $exception)
+        {
+            throw new CommitInformationNotFoundException();
+        }
     }
 }
