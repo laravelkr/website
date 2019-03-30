@@ -46,7 +46,7 @@ class DocumentParser
         $fileLocation = $this->location->getFileLocation($filename);
 
         if (!File::exists($fileLocation)) {
-            throw new FileNotFoundException();
+            throw new FileNotFoundException("File Not Found");
         }
 
         $fileContent = file_get_contents($fileLocation);
