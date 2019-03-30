@@ -33,6 +33,7 @@
 @section('last-modify')
     <div style="width:100%">
 
+        @if($enUpdated)
         최종 수정일 - &nbsp;
         <a href="https://laravel.com/docs/{{$version}}/{{$doc}}" target="_blank" style="cursor: pointer;"
            title="{{$enUpdated}}"> 영어 : {{$enTimeAgoUpdate}} </a>
@@ -45,6 +46,7 @@
             <i class="fa fa-external-link" aria-hidden="true"></i>
         </a>
         <span class="btn btn-outline-primary btn-sm pull-right" id="show-eng-docs">영문같이보기</span>
+        @endif
     </div>
 @endsection
 

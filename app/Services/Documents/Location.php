@@ -70,7 +70,13 @@ class Location
 
     public function getFileLocation(string $fileName)
     {
-        return sprintf("%s/%s.md", $this->getVersionLocation(), $fileName);
+        if($fileName=="README")
+            $path = $this->getBaseLocation();
+        else
+            $path = $this->getVersionLocation();
+
+
+        return sprintf("%s/%s.md", $path, $fileName);
     }
 
 

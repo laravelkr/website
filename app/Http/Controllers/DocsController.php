@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\CommitInformationNotFoundException;
 use App\Services\Github\ContributorSearcher;
 use App\Services\Documents\UpdateDateInterface;
 use App\Services\Markdown\ManualArticle;
@@ -73,11 +74,7 @@ class DocsController extends Controller
 
         // 5.3 이상 버전에 한해서 기본 문서를 readme 로 설정
         if ($doc === null) {
-            if ($version >= 5.3) {
-                $doc = 'readme';
-            } else {
-                $doc = 'installation';
-            }
+            $doc = 'README';
         }
 
 
@@ -115,11 +112,24 @@ class DocsController extends Controller
                 $enContent = $this->articleProvider->getContent();
 
 
-                $enUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('en', $version, $doc);
-                $krUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('kr', $version, $doc);
+                try {
+                    $enUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('en', $version, $doc);
+                    $enTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $enUpdated)->diffForHumans();
+                } catch (CommitInformationNotFoundException $exception) {
+                    $enUpdated = null;
+                    $enTimeAgoUpdate = null;
 
-                $enTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $enUpdated)->diffForHumans();
-                $krTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $krUpdated)->diffForHumans();
+                }
+
+                try {
+
+                    $krUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('kr', $version, $doc);
+                    $krTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $krUpdated)->diffForHumans();
+                } catch (CommitInformationNotFoundException $exception) {
+                    $krUpdated = null;
+                    $krTimeAgoUpdate = null;
+                }
+
 
                 $this->contributorSearcher->setBranch($version);
 
