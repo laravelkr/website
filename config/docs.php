@@ -36,7 +36,7 @@ return [
             'lts' => false,
         ],
         '5.8' => [
-            'deprecatedAt' => '2019-09-04',
+            'deprecatedAt' => '2020-02-26',
             'lts' => false,
         ],
     ],
