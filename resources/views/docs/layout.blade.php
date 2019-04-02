@@ -82,7 +82,7 @@
 </div>
 
 @if(!empty($notices))
-    @include('partials.notices');
+    @include('partials.notices')
 @endif
 
 <footer class="app-footer">
