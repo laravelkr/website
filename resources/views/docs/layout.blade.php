@@ -43,6 +43,10 @@
 
     <link href="/assets/vendor/coreui/css/style.css" rel="stylesheet">
     <link href="/assets/vendor/coreui/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
+
+    <link href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/tomorrow-night.min.css' rel='stylesheet' type='text/css'>
+    <link href='{{ mix('css/common.css') }}' rel='stylesheet' type='text/css'>
+    <link href='{{ mix('css/docs.css') }}' rel='stylesheet' type='text/css'>
     @yield('head')
 </head>
 <body class="app header-fixed sidebar-fixed aside-menu-fixed
@@ -64,7 +68,23 @@
     </main>
 
     @include('docs.aside')
+
+    <span id="back-to-top" class="text-info">
+        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+    </span>
+    <span id="kakao-open-chat">
+        <a href="https://open.kakao.com/o/g3dWlf0" target="_blank" data-toggle="tooltip" data-placement="left"
+           title="혼자 공부하기 힘들 땐?">
+            <img src="{{ asset('assets/images/kakao.png') }}" alt="라라벨 카카오톡 오픈채팅">
+        </a>
+    </span>
+
 </div>
+
+@if(!empty($notices))
+    @include('partials.notices');
+@endif
+
 <footer class="app-footer">
     <div>
         <a href="https://coreui.io/">CoreUI</a>
@@ -84,6 +104,12 @@
 <script src="/assets/vendor/coreui/vendors/@coreui/coreui/js/coreui.min.js"></script>
 {{--<script src="/assets/vendor/coreui/vendors/chart.js/js/Chart.min.js"></script>--}}
 {{--<script src="/assets/vendor/coreui/vendors/@coreui/coreui-plugin-chartjs-custom-tooltips/js/custom-tooltips.min.js"></script>--}}
+
+<script src="/assets/vendor/coreui/js/jquery.cookie.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script src="{{ mix('js/docs.js') }}"></script>
 
 @include('partials.toastr')
 @yield('footerScript')

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\CommitInformationNotFoundException;
+use App\Notice;
 use App\Services\Github\ContributorSearcher;
 use App\Services\Documents\UpdateDateInterface;
 use App\Services\Markdown\ManualArticle;
@@ -154,6 +155,8 @@ class DocsController extends Controller
                     'prevLink', 'nextLink', 'notificationMessage');
             });
 
+
+        $args['notices'] = Notice::getAll();
 
         return view('docs.show', $args);
     }

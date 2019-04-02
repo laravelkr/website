@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notice;
 use App\Services\AllContributors\Contributors;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
@@ -29,7 +30,8 @@ class HomeController extends Controller
 
         $contributorsHtml = $allContributors->getHtml();
 
+        $notices = Notice::getAll();
 
-        return view('index', compact('lastVersion', 'contributorsHtml'));
+        return view('index', compact('lastVersion', 'contributorsHtml', 'notices'));
     }
 }

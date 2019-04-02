@@ -5,7 +5,8 @@
      * @var LinkLocationDto $nowLink
      * @var LinkLocationDto $prevLink
      * @var LinkLocationDto $nextLink
-     */use App\Services\Navigator\Dto\LinkLocationDto;
+     */
+ use App\Services\Navigator\Dto\LinkLocationDto;
 @endphp
 
 @section('title', '라라벨 '. $version. (!empty($nowLink->title)?" - ".$nowLink->title:"" ))
@@ -15,12 +16,6 @@
 @section('meta.url', url()->current())
 @section('meta.title', '라라벨 '. $version. (!empty($nowLink->title)?" - ".$nowLink->title:"" ))
 @section('meta.description', '라라벨 한글 메뉴얼 '. $version. (!empty($nowLink->title)?" - ".$nowLink->title:"" ))
-
-@section('head')
-    <link href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/tomorrow-night.min.css'
-          rel='stylesheet' type='text/css'>
-    <link href='{{ mix('css/docs.css') }}' rel='stylesheet' type='text/css'>
-@endsection
 
 @section('sidebar')
     {!! $tableContent !!}
@@ -89,24 +84,9 @@
             </div>
         </div>
     </div>
-    <span id="back-to-top" class="text-info">
-        <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-    </span>
-    <span id="kakao-open-chat">
-        <a href="https://open.kakao.com/o/g3dWlf0" target="_blank" data-toggle="tooltip" data-placement="left"
-           title="혼자 공부하기 힘들 땐?">
-            <img src="{{ asset('assets/images/kakao.png') }}" alt="라라벨 카카오톡 오픈채팅">
-        </a>
-    </span>
 @endsection
 
 @section('footerScript')
-    <script src="/assets/vendor/coreui/js/jquery.cookie.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-    <script src="{{ mix('js/docs.js') }}"></script>
-
     @if(!empty($notificationMessage))
         <script>
             toastr.options = {

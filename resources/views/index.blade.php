@@ -44,6 +44,7 @@
     {{--<link rel="stylesheet" href="/assets/vendor/adventure/css/animate.min.css">--}}
     <link rel="stylesheet" href="/assets/vendor/adventure/css/owl.carousel.css">
     <link rel="stylesheet" href="/assets/vendor/adventure/css/main.css">
+    <link href='{{ mix('css/common.css') }}' rel='stylesheet' type='text/css'>
 
     <style>
 
@@ -481,6 +482,12 @@
 <!-- End faq Area -->
 
 --}}
+
+
+@if(!empty($notices))
+    @include('partials.notices');
+@endif
+
 
 <!-- start footer Area -->
 <footer class="footer-area section-gap">
