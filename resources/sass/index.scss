@@ -19,6 +19,9 @@ a {
 @media (max-width: 992px) {
   .navbar-nav {
     max-height:80vh;
+    a{
+      display: block;
+    }
   }
 }
 
