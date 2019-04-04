@@ -16,8 +16,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <!-- Favicon-->
-    <link rel="shortcut icon" href="/favicon.ico">
+    @include('partials.favicon')
     <!-- Title -->
     <title>@yield('title_prefix', config('website.title_prefix', ''))
         @yield('title', config('website.title', '라라벨 코리아 커뮤니티(Laravel Korea Community)'))
