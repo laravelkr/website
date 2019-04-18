@@ -61,6 +61,14 @@
         <div class="breadcrumb">
             @yield('last-modify')
         </div>
+        <div class="docs-banner">
+            <a href="https://recruit.brich.co.kr/" target="_blank"
+               onclick="ga('send', 'event', 'banner', 'click', 'brich', 1);"
+               style="float:right;">
+                <img class="banner-wide" src="/assets/images/banners/brich.jpg"/>
+                <img class="banner-small" src="/assets/images/banners/brich.jpg"/>
+            </a>
+        </div>
         <div class="container-fluid doc-">
             @yield('content')
         </div>
