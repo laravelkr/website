@@ -213,11 +213,3 @@ body {
   display: none;
 }
 
-
-article h1:before, h2:before, h3:before, h4:before {
-  margin-top: -75px;
-  height: 75px;
-  display: block;
-  content: " ";
-  visibility: hidden;
-}
