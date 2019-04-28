@@ -16,3 +16,25 @@
     padding:10px;
   }
 }
+
+.navbar .nav-item {
+  .default {
+    &:before {
+      content: "\f164";
+      color: #2196f3;
+      font: normal normal normal 14px/1 FontAwesome;
+    }
+  }
+
+  strong.default:before {
+    color: white;
+  }
+
+  .deprecated {
+    &:before {
+      content: "\f00d";
+      color: #e91e63;
+      font: normal normal normal 14px/1 FontAwesome;
+    }
+  }
+}

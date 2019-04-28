@@ -112,11 +112,11 @@
                             <div class="dropdown-menu">
 
                                 @foreach(array_reverse(config('docs.versions')) as $supportVersion => $versionStatus)
-                                    <a class="dropdown-item" href="{{ route('docs.show', [sprintf("%1.1f", $supportVersion )]) }}">
+                                    @php
+                                        $deprecated = $versionStatus['deprecatedAt']<$today;
+                                    @endphp
+                                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?"default":"" }}" href="{{ route('docs.show', [sprintf("%1.1f", $supportVersion )]) }}">
                                         {{sprintf("%1.1f", $supportVersion)}}
-                                        @php
-                                            $deprecated = $versionStatus['deprecatedAt']<$today;
-                                        @endphp
                                         @if($versionStatus['lts'] || $deprecated)
                                             (
                                             {{ $versionStatus['lts']?"LTS":"" }}
@@ -124,7 +124,7 @@
                                             @if($versionStatus['lts'] && $deprecated)
                                                 ,
                                             @endif
-                                            {{ $deprecated?"Deprecated":"" }}
+                                            {{ $deprecated?"지원종료":"" }}
                                             )
                                         @endif
                                     </a>
