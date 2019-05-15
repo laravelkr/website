@@ -97,6 +97,12 @@
         <a href="https://coreui.io/">CoreUI</a>
         <span>© 2018 creativeLabs.</span>
     </div>
+
+    <div style="margin:auto">
+        채용공고 등록이나 문의를 원하시는 분들은
+        <a href="https://forms.gle/LyFzsfKUGyLSEWeN9" class="text-primary">여기</a>
+        로 연락주세요
+    </div>
     <div class="ml-auto">
         <span>Powered by</span>
         <a href="https://coreui.io/">CoreUI</a>
