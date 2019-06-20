@@ -24,40 +24,8 @@ body {
 
 }
 
-.docs-banner {
-  padding: 0 30px;
-  width: 100%;
-  height: 50px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 100;
-}
-
-
-@media (max-width: 320px) {
-  .banner-wide {
-    display: none;
-  }
-  .banner-small {
-    display: block;
-    max-width:100%;
-  }
-}
-
-
-@media (min-width: 321px) {
-  .banner-wide {
-    display: block;
-  }
-  .banner-small {
-    display: none;
-  }
-}
 
 @media (max-width: 576px) {
-  .docs-banner {
-    padding: 0 15px;
-  }
   .docs-content-panel {
     margin-left: -40px;
     margin-right: -40px;

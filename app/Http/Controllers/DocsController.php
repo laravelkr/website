@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Banner;
 use App\Exceptions\CommitInformationNotFoundException;
 use App\Notice;
 use App\Services\Github\ContributorSearcher;
@@ -157,6 +158,7 @@ class DocsController extends Controller
 
 
         $args['notices'] = Notice::getAll();
+        $args['banners'] = Banner::getAll();
 
         return view('docs.show', $args);
     }

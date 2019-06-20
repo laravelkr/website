@@ -61,14 +61,35 @@
         <div class="breadcrumb">
             @yield('last-modify')
         </div>
-        <div class="docs-banner">
-            <a href="https://recruit.brich.co.kr/" target="_blank"
-               onclick="ga('send', 'event', 'banner', 'click', 'brich', 1);"
-               style="float:right;">
-                <img class="banner-wide" src="/assets/images/banners/brich.jpg"/>
-                <img class="banner-small" src="/assets/images/banners/brich.jpg"/>
-            </a>
-        </div>
+
+        <?php /** @var \App\Banner|Illuminate\Support\Collection $banners */?>
+        @if($banners->count())
+            <div class="container-fluid">
+                <div id="banner-slide" class="carousel slide" data-ride="carousel" style="max-width:345px;">
+                    <div class="carousel-inner">
+
+                        <?php /** @var \App\Banner $banner */?>
+                        @foreach($banners->shuffle() as $banner)
+                        <div class="carousel-item {{ $loop->first?"active":"" }}">
+                            <a href="{{ $banner->url }}" target="_blank"
+                               onclick="ga('send', 'event', 'banner', 'click', '{{ $banner->code }}', 1);"  style="float:right;">
+                                <img src="{{ $banner->imageUrl }}"/>
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+                    <a class="carousel-control-prev" href="#banner-slide" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#banner-slide" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        @endif
+
         <div class="container-fluid doc-">
             @yield('content')
         </div>
