@@ -42,4 +42,12 @@ $(window).on('load', function () {
 
     $('[data-toggle="tooltip"]').tooltip("show");
 
+
+    $("#banner-slide").owlCarousel({
+        autoplay: 2000,
+        loop: true,
+        items: 1,
+        pagination: false,
+    });
+
 });

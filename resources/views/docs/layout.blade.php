@@ -44,6 +44,7 @@
     <link href="/assets/vendor/coreui/vendors/pace-progress/css/pace.min.css" rel="stylesheet">
 
     <link href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/tomorrow-night.min.css' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link href='{{ mix('css/common.css') }}' rel='stylesheet' type='text/css'>
     <link href='{{ mix('css/docs.css') }}' rel='stylesheet' type='text/css'>
     @yield('head')
@@ -62,35 +63,27 @@
             @yield('last-modify')
         </div>
 
-        <?php /** @var \App\Banner|Illuminate\Support\Collection $banners */?>
+        <?php /** @var \App\Banner[]|Illuminate\Support\Collection $banners */?>
         @if($banners->count())
-            <div class="container-fluid">
-                <div id="banner-slide" class="carousel slide" data-ride="carousel" style="max-width:345px;">
-                    <div class="carousel-inner">
 
-                        <?php /** @var \App\Banner $banner */?>
-                        @foreach($banners->shuffle() as $banner)
-                        <div class="carousel-item {{ $loop->first?"active":"" }}">
-                            <a href="{{ $banner->url }}" target="_blank"
-                               onclick="ga('send', 'event', 'banner', 'click', '{{ $banner->code }}', 1);"  style="float:right;">
-                                <img src="{{ $banner->imageUrl }}"/>
-                            </a>
-                        </div>
-                        @endforeach
+            <div class="container-fluid">
+                <div id="banner-slide" class="owl-carousel">
+
+                <?php /** @var \App\Banner $banner */?>
+                @foreach($banners->shuffle() as $banner)
+                    <div class="item">
+                        <a href="{{ $banner->url }}" target="_blank"
+                           onclick="ga('send', 'event', 'banner', 'click', '{{ $banner->code }}', 1);"  style="float:right;">
+                            <img src="{{ $banner->imageUrl }}"/>
+                        </a>
                     </div>
-                    <a class="carousel-control-prev" href="#banner-slide" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#banner-slide" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
+                @endforeach
+
                 </div>
             </div>
         @endif
 
-        <div class="container-fluid doc-">
+        <div class="container-fluid">
             @yield('content')
         </div>
     </main>
@@ -142,6 +135,7 @@
 <script src="/assets/vendor/coreui/js/jquery.cookie.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.1/anchor.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="{{ mix('js/docs.js') }}"></script>
 
