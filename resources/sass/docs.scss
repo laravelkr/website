@@ -156,6 +156,8 @@ body {
 .aside-menu {
   width: 300px;
   padding-top: 20px;
+  padding-bottom: 50px;
+  overflow-y: scroll;
 
   strong {
     margin-left: 1.2rem;

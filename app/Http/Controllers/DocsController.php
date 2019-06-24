@@ -10,6 +10,7 @@ use App\Services\Documents\UpdateDateInterface;
 use App\Services\Markdown\ManualArticle;
 use App\Services\Markdown\ManualMarkdownProvider;
 use App\Services\Markdown\ManualNavigator;
+use App\Services\Markdown\AsideMenuBar;
 use App\Services\Navigator\LinkExtractor;
 use App\Services\Navigator\Location;
 use Carbon\Carbon;
@@ -49,13 +50,16 @@ class DocsController extends Controller
      */
     protected $navigatorLinkExtractor;
 
+    protected $asideMenuBar;
+
     public function __construct(
         ManualArticle $articleProvider,
         ManualNavigator $navigatorProvider,
         UpdateDateInterface $documentUpdatedDateChecker,
         LinkExtractor $navigatorLinkExtractor,
         Location $navigatorLinkLocationProvider,
-        ContributorSearcher $contributorSearcher
+        ContributorSearcher $contributorSearcher,
+        AsideMenuBar $asideMenuBar
     ) {
         parent::__construct();
 
@@ -66,6 +70,7 @@ class DocsController extends Controller
         $this->navigatorLinkExtractor = $navigatorLinkExtractor;
         $this->navigatorLinkLocationProvider = $navigatorLinkLocationProvider;
         $this->contributorSearcher = $contributorSearcher;
+        $this->asideMenuBar = $asideMenuBar;
     }
 
     public function showDocs($version = null, $doc = null)
@@ -79,14 +84,12 @@ class DocsController extends Controller
             $doc = 'README';
         }
 
-
         if (preg_match('/[0-9.]+/', $version, $matches) === 0) {
             return redirect(route('docs.show', [$this->defaultVersions, $version]));
         } // 지원하는 버전이 아니면 기본 버전으로 이동
         elseif ($this->isValidVersion($version)) {
             return redirect(route('docs.show', [$this->defaultVersions, $doc]));
         }
-
 
         $args = Cache::remember('document.' . $version . '.' . $doc, self::CACHE_MINUTES,
             function () use ($version, $doc) {
@@ -150,16 +153,15 @@ class DocsController extends Controller
                 $prevLink = $this->navigatorLinkLocationProvider->getPrevLink();
                 $nextLink = $this->navigatorLinkLocationProvider->getNextLink();
 
-
                 return compact('version', 'tableContent', 'subTableContent', 'krContent', 'enContent', 'doc',
                     'enUpdated', 'krUpdated', 'enTimeAgoUpdate', 'krTimeAgoUpdate', 'contributors', 'nowLink',
                     'prevLink', 'nextLink', 'notificationMessage');
             });
 
-
         $args['notices'] = Notice::getAll();
         $args['banners'] = Banner::getAll();
-
+        $args['asidePageList'] = $this->asideMenuBar->getAsidelist();
+        
         return view('docs.show', $args);
     }
 

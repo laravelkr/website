@@ -1,10 +1,18 @@
-
 <aside class="aside-menu" id="aside-menu">
-    <strong>
-        <i class="fa fa-list" aria-hidden="true"></i>
-        Contents
-    </strong>
-    <ul>
-        @yield('aside')
-    </ul>
+    <div>
+        <strong>
+            <i class="fa fa-list" aria-hidden="true"></i>
+            Contents
+        </strong>
+        <ul>
+            @yield('aside')
+        </ul>
+    </div>
+    <div class="d-sm-none">
+        <strong>
+            <i class="fa fa-list" aria-hidden="true"></i>
+            PageList
+        </strong>
+        {!! $asidePageList !!}
+    </div>
 </aside>
