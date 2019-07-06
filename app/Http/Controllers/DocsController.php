@@ -160,8 +160,8 @@ class DocsController extends Controller
 
         $args['notices'] = Notice::getAll();
         $args['banners'] = Banner::getAll();
-        $args['asidePageList'] = $this->asideMenuBar->getAsidelist();
-        
+        $args['asidePageList'] = $this->asideMenuBar->getAsideList();
+
         return view('docs.show', $args);
     }
 
