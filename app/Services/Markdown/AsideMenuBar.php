@@ -8,6 +8,7 @@
 
 namespace App\Services\Markdown;
 
+use function Couchbase\defaultDecoder;
 use Spatie\Menu\Laravel\Link;
 use Spatie\Menu\Laravel\Menu;
 
@@ -50,9 +51,9 @@ class AsideMenuBar
 
             if (array_key_exists('subMenu', $label)) {
                 $this->asideMenuBar->submenu($label['Text'],
-                    Menu::build($this->subMenu, function ($menu, $label, $link) {
-                        $menu->add(link::to($link, $label['Text'])->addClass('nav-link')
-                            ->setAttribute($label['Attribute'][0], $label['Attribute'][1]));
+                    Menu::build($label['subMenu'], function (Menu $menu, array $sub_label, string $sub_link) {
+                        $menu->add(link::to($sub_link, $sub_label['Text'])->addClass('nav-link')
+                            ->setAttribute($sub_label['Attribute'][0], $sub_label['Attribute'][1]));
                     })
                 );
             }
