@@ -15,7 +15,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "oriceon/toastr-5-laravel": "dev-master",
-        "sentry/sentry-laravel": "^0.11.0"
+        "sentry/sentry-laravel": "^0.11.0",
+        "spatie/laravel-menu": "^3.3"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
