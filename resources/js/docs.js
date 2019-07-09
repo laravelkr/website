@@ -3,8 +3,12 @@ $(window).on('load', function () {
         let href = $(this).attr('href');
         let name = href.substr(1, href.length);
         let target = $('a[name="' + name + '"]');
-        //console.log(target);
-        $('html, body').animate({scrollTop: (target.offset().top - 70) + 'px'}, 1000, 'swing');
+        // console.log(target);
+        // return false;
+
+        if (target.length > 0) {
+            $('html, body').animate({scrollTop: (target.offset().top - 70) + 'px'}, 1000, 'swing');
+        }
     });
     $('.anchor').on('click', function (e) {
         e.preventDefault();
@@ -35,13 +39,11 @@ $(window).on('load', function () {
 
     anchors.add();
 
-    $("#show-eng-docs").on('click',function(){
+    $("#show-eng-docs").on('click', function () {
         $('#kr-article').parent().toggleClass('col-lg-12').toggleClass('col-lg-6');
         $('#en-article').parent().fadeToggle()
     });
-
     $('[data-toggle="tooltip"]').tooltip("show");
-
 
     $("#banner-slide").owlCarousel({
         autoplay: 2000,

@@ -8,7 +8,7 @@
             @yield('aside')
         </ul>
     </div>
-    <div class="d-sm-none">
+    <div class="d-xl-none">
         <strong>
             <i class="fa fa-list" aria-hidden="true"></i>
             PageList
