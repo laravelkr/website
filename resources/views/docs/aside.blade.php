@@ -1,5 +1,5 @@
 <aside class="aside-menu" id="aside-menu">
-    <div>
+    <div class="aside-contents">
         <strong>
             <i class="fa fa-list" aria-hidden="true"></i>
             Contents

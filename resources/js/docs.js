@@ -1,10 +1,8 @@
 $(window).on('load', function () {
-    $('.docs-content ul li a,#aside-menu a').on('click', function (e) {
+    $('.docs-content ul li a,#aside-menu .aside-contents a').on('click', function (e) {
         let href = $(this).attr('href');
         let name = href.substr(1, href.length);
         let target = $('a[name="' + name + '"]');
-        // console.log(target);
-        // return false;
 
         if (target.length > 0) {
             $('html, body').animate({scrollTop: (target.offset().top - 70) + 'px'}, 1000, 'swing');
