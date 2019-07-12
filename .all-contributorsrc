@@ -1,0 +1,23 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "kkame",
+      "name": "KKAME",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/4939813?v=4",
+      "profile": "https://kkame.net",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "website",
+  "projectOwner": "laravelkr",
+  "repoType": "github",
+  "repoHost": "https://github.com"
+}
