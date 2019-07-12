@@ -23,6 +23,14 @@ php artisan docs:update #각 버전별 문서 파일을 다운로드 및 업데�
 ```
 
 
+## Contributors
+
+
+## Acknowledgments
+
+Thanks to [JetBrains](https://www.jetbrains.com) for supporting us with a [free Open Source License](https://www.jetbrains.com/buy/opensource).
+
+
 ## License
 
 MIT
