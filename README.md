@@ -5,8 +5,7 @@
 ![GitHub issues](https://img.shields.io/github/issues/laravelkr/website.svg)
 ![GitHub](https://img.shields.io/github/license/laravelkr/website.svg)
 
-이 레포지터리는 https://laravel.kr의 소스코드를 관리하기 위한 프로젝트입니다
-
+라라벨코리아 [공식사이트](https://laravel.kr)의 소스코드를 관리하는 레포지터리입니다.
 
 ## Install
 
