@@ -4,7 +4,6 @@
 namespace App\Services\AllContributors;
 
 use GuzzleHttp\Client;
-use stdClass;
 
 class Contributors
 {
@@ -13,10 +12,13 @@ class Contributors
      */
     protected $emojiConverter;
 
-    /**
-     * @var string
+    /*
+     * git Contributor
      */
-    private $baseUrl = "https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc";
+    private $ContributorUrl = [
+        'docs' => 'https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc',
+        'website' => 'https://raw.githubusercontent.com/laravelkr/website/master/.all-contributorsrc',
+    ];
 
     /**
      * @var Client
@@ -32,43 +34,67 @@ class Contributors
 
     public function getHtml(): string
     {
+        $DefaultData = [];
+        foreach ($this->ContributorUrl as $site => $url) {
+            $contributors = json_decode($this->getDefaultData($url))->contributors;
 
-        $contributors = $this->getDefaultData();
+            foreach ($contributors as $contributor) {
 
-        $html = $this->convertHtml(json_decode($contributors));
+                // 연관 배열을 합치기 위한 작업.
+                if (key_exists($contributor->login, $DefaultData)) {
+                    $temp = array_merge($DefaultData[$contributor->login]->contributions, $contributor->contributions);
+                    $DefaultData[$contributor->login]->contributions = $temp;
+                    continue;
+                }
+
+                $DefaultData[$contributor->login] = $contributor;
+            }
+        }
+
+        $html = $this->convertHtml($DefaultData);
 
         return $html;
     }
 
+
     /**
+     * guzzle을 통한 배열 가져오기,
+     *
+     * @param string $url
      * @return string
      */
-    private function getDefaultData(): string
+    private function getDefaultData(string $url): string
     {
-        return $this->guzzle->get($this->baseUrl)->getBody()->getContents();
+        return $this->guzzle->get($url)->getBody()->getContents();
     }
 
-    private function convertHtml(stdClass $contributors): string
+    /**
+     *
+     *
+     * @param array $contributors
+     * @return string
+     * @throws \Exception
+     */
+    private function convertHtml(array $contributors): string
     {
-
         $return = "";
 
-
-        foreach ($contributors->contributors as $contributor) {
+        foreach ($contributors as $contributor) {
             $return .= "<div><a href=\"{$contributor->profile}\" target='_blank'><img src=\"{$contributor->avatar_url}\" width=\"100px;\" alt=\"{$contributor->name}\"><br><sub><b>{$contributor->name}</b></sub></a><br />";
 
-            foreach ($contributor->contributions as $contribution) {
-                $return .= "<span title='{$contribution}'>";
-                $return .= $this->emojiConverter->convert($contribution);
-                $return .= "</span>";
+            try {
+                foreach ($contributor->contributions as $contribution) {
+                    $return .= "<span title='{$contribution}'>";
+                    $return .= $this->emojiConverter->convert($contribution);
+                    $return .= "</span>";
+                }
+            } catch (\Exception $exception) {
+                // emoji가 정상적으로 변경이 되지않은 경우 .. 따로 노출할 부분은 없으므로,
             }
-            $return .= "</div>";
 
+            $return .= "</div>";
         }
 
         return $return;
-
     }
-
-
 }

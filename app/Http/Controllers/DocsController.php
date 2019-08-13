@@ -90,7 +90,6 @@ class DocsController extends Controller
         elseif ($this->isValidVersion($version)) {
             return redirect(route('docs.show', [$this->defaultVersions, $doc]));
         }
-
         $args = Cache::remember('document.' . $version . '.' . $doc, self::CACHE_MINUTES,
             function () use ($version, $doc) {
 
@@ -139,12 +138,10 @@ class DocsController extends Controller
                 $this->contributorSearcher->setBranch($version);
 
                 try {
-
-                    $contributors = $this->contributorSearcher->getContributors($doc);
+                    $contributors = $this->contributorSearcher->getContributors();
                 } catch (ConnectException $exception) {
                     $contributors = [];
                 }
-
 
                 $links = $this->navigatorLinkExtractor->extractToArray($tableContent);
                 $this->navigatorLinkLocationProvider->setLinks($links);
