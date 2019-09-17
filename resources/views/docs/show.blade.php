@@ -17,6 +17,12 @@
 @section('meta.title', '라라벨 '. $version. (!empty($nowLink->title)?" - ".$nowLink->title:"" ))
 @section('meta.description', '라라벨 한글 메뉴얼 '. $version. (!empty($nowLink->title)?" - ".$nowLink->title:"" ))
 
+
+@section('head')
+    <meta name="docsearch:version" content="{{ $version }}" />
+    <meta name="docsearch:language" content="{{ app()->getLocale() }}" />
+@endsection
+
 @section('sidebar')
     {!! $tableContent !!}
 @endsection
