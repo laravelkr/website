@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="docsearch:language" content="{{ app()->getLocale() }}" />
+        <meta name="docsearch:version" content="1.0.0" />
 
         <title>Laravel</title>
 

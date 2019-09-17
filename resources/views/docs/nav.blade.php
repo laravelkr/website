@@ -63,7 +63,8 @@
                         @php
                             $deprecated = $versionStatus['deprecatedAt']<$today;
                         @endphp
-                        <strong class="{{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}">
+                        <strong id="selected_version" data-version="{{ $version }}"
+                                class="{{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}">
                             {{sprintf("%1.1f", $supportVersion)}}
                             @if($versionStatus['lts'] || $deprecated)
                                 (
