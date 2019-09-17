@@ -31,6 +31,8 @@
     <meta property="og:url" content="@yield('meta.url',config('website.meta.og.url',''))" />
     <meta property="og:type" content="@yield('meta.type',config('website.meta.og.type',''))" />
     <meta property="og:image" content="@yield('meta.image',config('website.meta.og.image',''))" />
+    <meta name="docsearch:language" content="{{ app()->getLocale() }}" />
+    <meta name="docsearch:version" content="1.0.0" />
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--
