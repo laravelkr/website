@@ -33,6 +33,11 @@ body {
   .card-body {
     padding: 1em;
   }
+
+  .algolia-autocomplete .ds-dropdown-menu {
+    min-width: inherit !important;
+    max-width: 100vh !important;
+  }
 }
 
 @media (max-width: 991.98px) {
@@ -153,12 +158,18 @@ body {
 
 }
 
+
+
+#docsearch-form{padding:20px;border-bottom: 1px solid #eee;width:100%;
+  >span{width:100%;}
+}
+
 .aside-menu {
   width: 300px;
   padding-top: 20px;
-  padding-bottom: 50px;
-  overflow-y: scroll;
-
+  padding-bottom: 20px;
+  /*overflow-y: scroll;*/
+  .aside-contents{padding-top:20px;}
   strong {
     margin-left: 1.2rem;
     font-size: 1rem;

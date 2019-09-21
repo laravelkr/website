@@ -21,6 +21,10 @@
 @section('head')
     <meta name="docsearch:version" content="{{ $version }}" />
     <meta name="docsearch:language" content="{{ app()->getLocale() }}" />
+
+    @if(config('algoria.docsearch.apiKey'))
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+    @endif
 @endsection
 
 @section('sidebar')
@@ -101,4 +105,19 @@
             toastr.error('{!! addslashes($notificationMessage) !!}', {});
         </script>
     @endif
+
+
+    @if(config('algoria.docsearch.apiKey'))
+    <!-- at the end of the BODY -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+    <script type="text/javascript"> docsearch({
+            apiKey: '{{ config('algoria.docsearch.apiKey') }}',
+            indexName: '{{ config('algoria.docsearch.indexName') }}',
+            inputSelector: '#docsearch-input',
+            //algoliaOptions: { 'facetFilters': ["version:$VERSION", "language:$LANGUAGE"] },
+            debug: false // Set debug to true if you want to inspect the dropdown
+        });
+    </script>
+    @endif
+
 @endsection
