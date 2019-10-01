@@ -114,7 +114,10 @@
             apiKey: '{{ config('algoria.docsearch.apiKey') }}',
             indexName: '{{ config('algoria.docsearch.indexName') }}',
             inputSelector: '#docsearch-input',
-            //algoliaOptions: { 'facetFilters': ["version:$VERSION", "language:$LANGUAGE"] },
+            algoliaOptions: {
+                facetFilters: ["version:{{ $version }}", "language:ko"],
+                hitsPerPage: 8
+            },
             debug: false // Set debug to true if you want to inspect the dropdown
         });
     </script>
