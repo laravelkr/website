@@ -117,8 +117,8 @@
                                     @php
                                         $deprecated = $versionStatus['deprecatedAt']<$today;
                                     @endphp
-                                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?"default":"" }}" href="{{ route('docs.show', [sprintf("%1.1f", $supportVersion )]) }}">
-                                        {{sprintf("%1.1f", $supportVersion)}}
+                                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?"default":"" }}" href="{{ route('docs.show', [$supportVersion]) }}">
+                                        {{ $supportVersion }}
                                         @if($versionStatus['lts'] || $deprecated)
                                             (
                                             {{ $versionStatus['lts']?"LTS":"" }}
