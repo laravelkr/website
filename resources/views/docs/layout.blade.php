@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="{{ app()->getLocale() }}">
 <head>
     @if(config('website.ga'))
     <!-- Global site tag (gtag.js) - Google Analytics -->

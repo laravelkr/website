@@ -84,7 +84,7 @@ class DocsController extends Controller
             $doc = 'README';
         }
 
-        if (preg_match('/[0-9.]+/', $version, $matches) === 0) {
+        if (preg_match('/[0-9.x]+/', $version, $matches) === 0) {
             return redirect(route('docs.show', [$this->defaultVersions, $version]));
         } // 지원하는 버전이 아니면 기본 버전으로 이동
         elseif ($this->isValidVersion($version)) {

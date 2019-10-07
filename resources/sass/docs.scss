@@ -33,6 +33,14 @@ body {
   .card-body {
     padding: 1em;
   }
+<<<<<<< .merge_file_bpZoZp
+=======
+
+  .algolia-autocomplete .ds-dropdown-menu {
+    min-width: inherit !important;
+    max-width: 100vh !important;
+  }
+>>>>>>> .merge_file_6OcT2E
 }
 
 @media (max-width: 991.98px) {
@@ -153,12 +161,27 @@ body {
 
 }
 
+<<<<<<< .merge_file_bpZoZp
 .aside-menu {
   width: 300px;
   padding-top: 20px;
   padding-bottom: 50px;
   overflow-y: scroll;
 
+=======
+
+
+#docsearch-form{padding:20px;border-bottom: 1px solid #eee;width:100%;
+  >span{width:100%;}
+}
+
+.aside-menu {
+  width: 300px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  /*overflow-y: scroll;*/
+  .aside-contents{padding-top:20px;}
+>>>>>>> .merge_file_6OcT2E
   strong {
     margin-left: 1.2rem;
     font-size: 1rem;

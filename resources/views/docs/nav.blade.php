@@ -63,8 +63,9 @@
                         @php
                             $deprecated = $versionStatus['deprecatedAt']<$today;
                         @endphp
-                        <strong class="{{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}">
-                            {{sprintf("%1.1f", $supportVersion)}}
+                        <strong id="selected_version" data-version="{{ $version }}"
+                                class="{{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}">
+                            {{ $supportVersion }}
                             @if($versionStatus['lts'] || $deprecated)
                                 (
                                 {{ $versionStatus['lts']?"LTS":"" }}
@@ -88,10 +89,10 @@
                         $deprecated = $versionStatus['deprecatedAt']<$today;
                     @endphp
 
-                    <a class="dropdown-item{{ $deprecated?" deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}" href="{{ route('docs.show', [sprintf("%1.1f", $supportVersion),$doc]) }}">
+                    <a class="dropdown-item{{ $deprecated?" deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}" href="{{ route('docs.show', [$supportVersion, $doc]) }}">
                         @if($version == $supportVersion)
                             <strong>
-                                {{sprintf("%1.1f", $supportVersion)}}
+                                {{ $supportVersion }}
                                 @if($versionStatus['lts'] || $deprecated)
                                     (
                                     {{ $versionStatus['lts']?"LTS":"" }}
@@ -104,7 +105,7 @@
                                 @endif
                             </strong>
                         @else
-                            {{sprintf("%1.1f", $supportVersion)}}
+                            {{ $supportVersion }}
                             @if($versionStatus['lts'] || $deprecated)
                                 (
                                 {{ $versionStatus['lts']?"LTS":"" }}

@@ -31,6 +31,8 @@
     <meta property="og:url" content="@yield('meta.url',config('website.meta.og.url',''))" />
     <meta property="og:type" content="@yield('meta.type',config('website.meta.og.type',''))" />
     <meta property="og:image" content="@yield('meta.image',config('website.meta.og.image',''))" />
+    <meta name="docsearch:language" content="{{ app()->getLocale() }}" />
+    <meta name="docsearch:version" content="1.0.0" />
 
     <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
     <!--
@@ -115,8 +117,8 @@
                                     @php
                                         $deprecated = $versionStatus['deprecatedAt']<$today;
                                     @endphp
-                                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?"default":"" }}" href="{{ route('docs.show', [sprintf("%1.1f", $supportVersion )]) }}">
-                                        {{sprintf("%1.1f", $supportVersion)}}
+                                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?"default":"" }}" href="{{ route('docs.show', [$supportVersion]) }}">
+                                        {{ $supportVersion }}
                                         @if($versionStatus['lts'] || $deprecated)
                                             (
                                             {{ $versionStatus['lts']?"LTS":"" }}
@@ -170,10 +172,29 @@
                     <div class="banner-content text-center mb-20">
                         {{--<h3 class="text-uppercase text-white"></h1>--}}
                         <h1 class="text-white mb-20 mt-80 text-uppercase">신입 PHP 개발자 안내서</h1>
-                        <p class="text-white">이현석님의 신간 "바쁜 팀장님 대신 알려주는 신입 PHP 개발자 안내서"</p>
+                        <p class="text-white">이현석님의 "바쁜 팀장님 대신 알려주는 신입 PHP 개발자 안내서"</p>
                         <img class="hello-illustration" src="//misc.ridibooks.com/cover/3166000001/xxlarge"
                              style="max-width:50%; height:auto;margin:auto;">
                         <a href="https://ridibooks.com/v2/Detail?id=3166000001" target="_blank"
+                           class="text-uppercase header-btn">구매하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="item-slider relative"
+         style="background: url(/assets/vendor/adventure/images/pexels-photo-326424.jpeg);background-size: cover;">
+        <div class="overlay" style="background: rgba(0,0,0,.7)"></div>
+        <div class="container">
+            <div class="row fullscreen justify-content-center align-items-center">
+                <div class="col-md-10 col-12">
+                    <div class="banner-content text-center mb-20">
+                        {{--<h3 class="text-uppercase text-white"></h1>--}}
+                        <h1 class="text-white mb-20 mt-80 text-uppercase">클린 아키텍처 인 PHP</h1>
+                        <p class="text-white">이현석님의 신간 "클린 아키텍처 인 PHP"</p>
+                        <img class="hello-illustration" src="https://d2sofvawe08yqg.cloudfront.net/cleanphp-korean/hero?1561303266"
+                             style="max-width:50%; height:auto;margin:auto;">
+                        <a href="https://leanpub.com/cleanphp-korean" target="_blank"
                            class="text-uppercase header-btn">구매하기</a>
                     </div>
                 </div>
