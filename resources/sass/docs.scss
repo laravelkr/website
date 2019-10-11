@@ -168,8 +168,11 @@ body {
   width: 300px;
   padding-top: 20px;
   padding-bottom: 20px;
-  /*overflow-y: scroll;*/
-  .aside-contents{padding-top:20px;}
+  .aside-contents{
+      padding-top:20px;
+      overflow-y: scroll;
+      height: 100%;
+  }
   strong {
     margin-left: 1.2rem;
     font-size: 1rem;
