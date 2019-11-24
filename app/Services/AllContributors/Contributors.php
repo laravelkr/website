@@ -13,10 +13,15 @@ class Contributors
      */
     protected $emojiConverter;
 
-    /**
-     * @var string
-     */
-    private $baseUrl = "https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc";
+    /*
+    * git Contributor
+    */
+    private $ContributorUrls = [
+        'docs' => 'https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc',
+        'website' => 'https://raw.githubusercontent.com/laravelkr/website/master/.all-contributorsrc',
+    ];
+
+    private $ContributorDatas = [];
 
     /**
      * @var Client
@@ -32,29 +37,48 @@ class Contributors
 
     public function getHtml(): string
     {
+        $this->getContributorDatas();
 
-        $contributors = $this->getDefaultData();
-
-        $html = $this->convertHtml(json_decode($contributors));
+        $html = $this->convertHtml();
 
         return $html;
+    }
+
+    private function getContributorDatas()
+    {
+        foreach ($this->ContributorUrls as $contributorUrl) {
+            array_walk(json_decode($this->getDefaultData($contributorUrl))->contributors, [$this, 'Contributors']);
+        }
+    }
+
+    private function Contributors($res): bool
+    {
+        if (key_exists($res->login, $this->ContributorDatas)) {
+            $this->ContributorDatas[$res->login]->contributions =
+                array_merge(
+                    $this->ContributorDatas[$res->login]->contributions,
+                    $res->contributions
+                );
+            return false;
+        }
+
+        $this->ContributorDatas[$res->login] = $res;
+        return true;
     }
 
     /**
      * @return string
      */
-    private function getDefaultData(): string
+    private function getDefaultData(string $url): string
     {
-        return $this->guzzle->get($this->baseUrl)->getBody()->getContents();
+        return $this->guzzle->get($url)->getBody()->getContents();
     }
 
-    private function convertHtml(stdClass $contributors): string
+    private function convertHtml(): string
     {
-
         $return = "";
 
-
-        foreach ($contributors->contributors as $contributor) {
+        foreach ($this->ContributorDatas as $contributor) {
             $return .= "<div><a href=\"{$contributor->profile}\" target='_blank'><img src=\"{$contributor->avatar_url}\" width=\"100px;\" alt=\"{$contributor->name}\"><br><sub><b>{$contributor->name}</b></sub></a><br />";
 
             foreach ($contributor->contributions as $contribution) {
@@ -63,12 +87,8 @@ class Contributors
                 $return .= "</span>";
             }
             $return .= "</div>";
-
         }
 
         return $return;
-
     }
-
-
 }
