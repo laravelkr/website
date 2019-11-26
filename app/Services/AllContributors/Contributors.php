@@ -13,15 +13,15 @@ class Contributors
      */
     protected $emojiConverter;
 
-    /*
-    * git Contributor
-    */
-    private $ContributorUrls = [
+    /**
+     * @var array
+     */
+    private $contributorUrls = [
         'docs' => 'https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc',
         'website' => 'https://raw.githubusercontent.com/laravelkr/website/master/.all-contributorsrc',
     ];
 
-    private $ContributorDatas = [];
+    private $contributorDatas = [];
 
     /**
      * @var Client
@@ -37,33 +37,44 @@ class Contributors
 
     public function getHtml(): string
     {
-        $this->getContributorDatas();
+        $this->fetchContributorDatas();
 
         $html = $this->convertHtml();
 
         return $html;
     }
 
-    private function getContributorDatas()
+    private function fetchContributorDatas()
     {
-        foreach ($this->ContributorUrls as $contributorUrl) {
-            array_walk(json_decode($this->getDefaultData($contributorUrl))->contributors, [$this, 'Contributors']);
+        foreach ($this->contributorUrls as $contributorUrl) {
+            array_walk(
+                json_decode($this->getDefaultData($contributorUrl))->contributors,
+                [$this, 'settingContributors']
+            );
         }
     }
 
-    private function Contributors($res): bool
+    private function settingContributors($res): bool
     {
-        if (key_exists($res->login, $this->ContributorDatas)) {
-            $this->ContributorDatas[$res->login]->contributions =
+        $user_id = $res->login;
+
+        if ($this->existsContributor($user_id)) {
+            $this->contributorDatas[$user_id]->contributions =
                 array_merge(
-                    $this->ContributorDatas[$res->login]->contributions,
+                    $this->contributorDatas[$user_id]->contributions,
                     $res->contributions
                 );
+
             return false;
         }
 
-        $this->ContributorDatas[$res->login] = $res;
+        $this->contributorDatas[$user_id] = $res;
         return true;
+    }
+
+    private function existsContributor(string $user_id): bool
+    {
+        return key_exists($user_id, $this->contributorDatas);
     }
 
     /**
@@ -78,7 +89,7 @@ class Contributors
     {
         $return = "";
 
-        foreach ($this->ContributorDatas as $contributor) {
+        foreach ($this->contributorDatas as $contributor) {
             $return .= "<div><a href=\"{$contributor->profile}\" target='_blank'><img src=\"{$contributor->avatar_url}\" width=\"100px;\" alt=\"{$contributor->name}\"><br><sub><b>{$contributor->name}</b></sub></a><br />";
 
             foreach ($contributor->contributions as $contribution) {
