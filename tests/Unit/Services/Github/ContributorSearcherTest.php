@@ -19,17 +19,21 @@ class ContributorSearcherTest extends TestCase
 
 
     /**
-     * @expectedException \App\Exceptions\BadArgumentsException
+     * @test
      */
-    public function test_브랜치를_지정하지_않을_경우_예외발생확인()
+    public function 브랜치를_지정하지_않을_경우_예외발생확인()
     {
+        $this->expectException(\App\Exceptions\BadArgumentsException::class);
         $contributorSearcher = new ContributorSearcher(new Client(), new Crawler());
 
         $contributorSearcher->getContributors('documentation');
     }
 
 
-    public function test_정상확인()
+    /**
+     * @test
+     */
+    public function 정상확인()
     {
 
         $contributorSearcher = new ContributorSearcher(new Client(), new Crawler());

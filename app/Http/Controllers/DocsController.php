@@ -21,7 +21,7 @@ use Illuminate\Support\Facades\Cache;
 class DocsController extends Controller
 {
 
-    const CACHE_MINUTES = 30;
+    protected const CACHE_SECONDS = 1800;
 
     protected $defaultVersions;
 
@@ -91,7 +91,7 @@ class DocsController extends Controller
             return redirect(route('docs.show', [$this->defaultVersions, $doc]));
         }
 
-        $args = Cache::remember('document.' . $version . '.' . $doc, self::CACHE_MINUTES,
+        $args = Cache::remember('document.'.$version.'.'.$doc, self::CACHE_SECONDS,
             function () use ($version, $doc) {
 
 
@@ -185,8 +185,8 @@ class DocsController extends Controller
     private function getDeprecatedNotificationMessage($version, $doc)
     {
 
-        return "라라벨 " . $version . "버전은 공식 유지보수 기간이 종료됨에 따라 한글 문서번역도 종료되었습니다. 최신 데이터를 확인하기 위해서는 공식 홈페이지를 참조해주시기 바랍니다<br /><br /><a class='btn bg-white btn-outline-primary text-primary' href='" . route('docs.show',
-                [config('docs.default'), $doc]) . "'>" . config('docs.default') . "버전 바로가기</a>";
+        return "라라벨 ".$version."버전은 공식 유지보수 기간이 종료됨에 따라 한글 문서번역도 종료되었습니다. 최신 데이터를 확인하기 위해서는 공식 홈페이지를 참조해주시기 바랍니다<br /><br /><a class='btn bg-white btn-outline-primary text-primary' href='".route('docs.show',
+                [config('docs.default'), $doc])."'>".config('docs.default')."버전 바로가기</a>";
 
     }
 }

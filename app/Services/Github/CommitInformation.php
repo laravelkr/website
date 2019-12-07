@@ -6,7 +6,6 @@ namespace App\Services\Github;
 
 use App\Exceptions\CommitInformationNotFoundException;
 use GuzzleHttp\Client;
-use GuzzleHttp\Exception\ClientException;
 
 class CommitInformation
 {

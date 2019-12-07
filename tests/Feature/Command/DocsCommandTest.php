@@ -15,14 +15,20 @@ class DocsCommandTest extends TestCase
 {
 
 
-    public function testDownload()
+    /**
+     * @test
+     */
+    public function Download()
     {
 
         $this->artisan('docs:initialize')->assertExitCode(0);
     }
 
 
-    public function testUpdate()
+    /**
+     * @test
+     */
+    public function Update()
     {
 
         $this->artisan('docs:update')->assertExitCode(0);

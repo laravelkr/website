@@ -16,7 +16,10 @@ use Tests\TestCase;
 class DocumentUpdatedDateCheckerTest extends TestCase
 {
 
-    public function test_문서_업데이트일자_확인()
+    /**
+     * @test
+     */
+    public function 문서_업데이트일자_확인()
     {
 
         $documentUpdatedDateChecker = new UpdatedDateChecker(new CommitInformation(new Client()));
@@ -33,11 +36,11 @@ class DocumentUpdatedDateCheckerTest extends TestCase
 
 
     /**
-     * TODO: Exception 분할 필요
-     * @expectedException \App\Exceptions\NotSupportedLanguageException
+     * @test
      */
-    public function test_지원하지않는_문서요청_예외확인()
+    public function 지원하지않는_문서요청_예외확인()
     {
+        $this->expectException(\App\Exceptions\NotSupportedLanguageException::class);
         $documentUpdatedDateChecker = new UpdatedDateChecker(new CommitInformation(new Client()));
         $documentUpdatedDateChecker->getDocsUpdatedAt('jp', config('docs.default'), 'readme');
     }

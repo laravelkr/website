@@ -4,11 +4,9 @@ use Tests\TestCase;
 class IndexControllerTest extends TestCase
 {
     /**
-     * A basic functional test example.
-     *
-     * @return void
+     * @test
      */
-    public function testIndexPage()
+    public function IndexPage()
     {
         $this->get('/')->assertStatus(200);
     }

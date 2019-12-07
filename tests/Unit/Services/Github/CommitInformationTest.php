@@ -9,7 +9,10 @@ use Tests\TestCase;
 class CommitInformationTest extends TestCase
 {
 
-    public function testGetLastCommitDate()
+    /**
+     * @test
+     */
+    public function GetLastCommitDate()
     {
 
         $commitInformation = new CommitInformation(new Client());

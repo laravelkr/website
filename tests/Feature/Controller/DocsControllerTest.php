@@ -1,6 +1,8 @@
 <?php
 
 use App\Services\Documents\Location;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class DocsControllerTest extends TestCase
@@ -15,19 +17,20 @@ class DocsControllerTest extends TestCase
 
 
     /**
+     * @test
      * @dataProvider versionProvider
      * @param $version
      * @param $urls
      */
-    public function testDocs($version, $urls)
+    public function Docs(string $version, array $urls)
     {
 
 
         $this->get(route('docs.show', [$version]))->assertStatus(200);
 
-        $url = shuffle($urls)[0];
+        $url = Arr::random($urls);
 
-        if (strpos($url, "api")) {
+        if (Str::endsWith($url, "/api")) {
             $this->get($url)->assertStatus(301);
         } else {
             $this->get($url)->assertStatus(200);
