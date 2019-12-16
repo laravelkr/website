@@ -15,6 +15,14 @@ git clone git@github.com:laravelkr/website.git
 cd website
 
 composer install
+
+# .env 파일 복사 
+cp .env.exaple .env
+
+# key generate
+php artisan key:generate 
+
+# Laravel mix install
 npm ci
 
 php artisan docs:initialize #laravelkr/docs 레포지터리를 다운로드
