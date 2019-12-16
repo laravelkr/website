@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Services\AllContributors;
 
 use GuzzleHttp\Client;
@@ -39,9 +37,7 @@ class Contributors
     {
         $this->fetchContributorDatas();
 
-        $html = $this->convertHtml();
-
-        return $html;
+        return $this->convertHtml();
     }
 
     private function fetchContributorDatas()
@@ -77,9 +73,6 @@ class Contributors
         return key_exists($user_id, $this->contributorDatas);
     }
 
-    /**
-     * @return string
-     */
     private function getDefaultData(string $url): string
     {
         return $this->guzzle->get($url)->getBody()->getContents();
