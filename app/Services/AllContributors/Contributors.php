@@ -1,8 +1,8 @@
 <?php
+
 namespace App\Services\AllContributors;
 
-use GuzzleHttp\Client;
-use stdClass;
+use App\Services\AllContributors\TakeGitContributors;
 
 class Contributors
 {
@@ -11,41 +11,33 @@ class Contributors
      */
     protected $emojiConverter;
 
-    /**
-     * @var array
-     */
-    private $contributorUrls = [
-        'docs' => 'https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc',
-        'website' => 'https://raw.githubusercontent.com/laravelkr/website/master/.all-contributorsrc',
-    ];
+    protected $takeGitContributors;
 
     private $contributorDatas = [];
 
-    /**
-     * @var Client
-     */
-    private $guzzle;
-
-
-    public function __construct(Client $guzzle, EmojiConverter $emojiConverter)
-    {
-        $this->guzzle = $guzzle;
+    public function __construct(
+        EmojiConverter $emojiConverter,
+        TakeGitContributors $takeGitContributors
+    ) {
         $this->emojiConverter = $emojiConverter;
+        $this->takeGitContributors = $takeGitContributors;
     }
 
     public function getHtml(): string
     {
-        $this->fetchContributorDatas();
+        $gitContributors = $this->takeGitContributors->getDefaultData();
+
+        $this->initializeContributorDatas($gitContributors);
 
         return $this->convertHtml();
     }
 
-    private function fetchContributorDatas()
+    private function initializeContributorDatas($gitContributors)
     {
-        foreach ($this->contributorUrls as $contributorUrl) {
-            array_walk(
-                json_decode($this->getDefaultData($contributorUrl))->contributors,
-                [$this, 'settingContributors']
+        foreach ($gitContributors as $gitContributor) {
+            array_map(
+                [$this, 'settingContributors'],
+                json_decode($gitContributor)->contributors
             );
         }
     }
@@ -71,11 +63,6 @@ class Contributors
     private function existsContributor(string $user_id): bool
     {
         return key_exists($user_id, $this->contributorDatas);
-    }
-
-    private function getDefaultData(string $url): string
-    {
-        return $this->guzzle->get($url)->getBody()->getContents();
     }
 
     private function convertHtml(): string
