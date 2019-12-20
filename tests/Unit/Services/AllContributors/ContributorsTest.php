@@ -3,9 +3,6 @@
 namespace Tests\Unit;
 
 use App\Services\AllContributors\EmojiConverter;
-use GuzzleHttp\Client;
-use http\Client\Response;
-use Mockery\Mock;
 use Tests\TestCase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -18,21 +15,46 @@ class ContributorsTest extends TestCase
     /**
      * @dataProvider testDataSamples
      */
-    public function testGetHtml($body)
+    public function testGetHtml(string $body)
     {
+        // Arrange
         $responseMock = \Mockery::mock(\GuzzleHttp\Psr7\Response::class);
         $responseMock->shouldReceive('getContents')->andReturn($body);
+        $responseMock->shouldReceive('getStatus')->andReturn(200);
         $responseMock->shouldReceive('getBody')->andReturn($responseMock);
 
         $requsetMock = \Mockery::mock(\GuzzleHttp\Client::class);
-        $requsetMock->shouldReceive('requset')->andReturn($responseMock);
+        $requsetMock->shouldReceive('get')->andReturn($responseMock);
 
+        // Act
         $contributors = new Contributors(new EmojiConverter(), new TakeGitContributors($requsetMock));
-
         $res = $contributors->getHtml();
 
+        // Assert
         $this->assertIsString($res);
     }
+
+    /**
+     * @dataProvider testDataSamples
+     */
+    public function testGetHtmlSpy(string $body)
+    {
+        // Arrange
+        $responseSpy = \Mockery::spy(\GuzzleHttp\Psr7\Response::class);
+        $responseSpy->shouldReceive('getContents')->andReturn($body);
+        $responseSpy->shouldReceive('getBody')->andReturn($responseSpy);
+
+        $requsetSpy = \Mockery::spy(\GuzzleHttp\Client::class);
+        $requsetSpy->shouldReceive('get')->andReturn($responseSpy);
+
+        // Act
+        $contributors = new Contributors(new EmojiConverter(), new TakeGitContributors($requsetSpy));
+        $res = $contributors->getHtml();
+
+        // Assert
+        $this->assertIsString($res);
+    }
+
 
     public function testDataSamples()
     {
