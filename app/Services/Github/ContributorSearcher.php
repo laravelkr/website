@@ -72,7 +72,7 @@ class ContributorSearcher
     }
 
     /**
-     * @param string $fileName
+     * @param  string  $fileName
      * @return string
      * @throws BadArgumentsException
      * @throws ContributorNotFoundException
@@ -87,7 +87,7 @@ class ContributorSearcher
 
         try {
 
-            $contributorsUrl = sprintf($this->baseUrl, "pre-kr-" . $this->branch, $fileName . ".md");
+            $contributorsUrl = sprintf($this->baseUrl, "pre-kr-".$this->branch, $fileName.".md");
 
 
             $res = $this->guzzle->request('GET', $contributorsUrl);
@@ -107,18 +107,35 @@ class ContributorSearcher
         $this->crawler->addHtmlContent($contributorsHtml);
 
 
-        $this->crawler->filter('.list-style-none li')->each(function (Crawler $node) use (&$contributors) {
+        $this->crawler->filter('a.avatar-link')->each(function (Crawler $node) use (&$contributors) {
 
-            $userUrl = "https://github.com" . $node->filter('a')->attr('href');
+            $userId = str_replace("@", "", $node->filter('img')->attr('alt'));
+            $userUrl = "https://github.com/".$userId;
             $imageUrl = $node->filter('img')->attr('src');
-            $imageUrl = str_replace("s=40&", "s=80", $imageUrl);
+            $imageUrl = str_replace("s=40&", "s=80&", $imageUrl);
             $contributors[] = (object)[
-                'userName' => trim($node->text()),
+                'userName' => $userId,
                 'userBaseUrl' => $userUrl,
                 'userImage' => $imageUrl,
             ];
         });
 
+        if (count($contributors) == 0) {
+
+            $node = $this->crawler->filter('.f6 a')->first();
+
+
+            $userUrl = "https://github.com".$node->attr('href');
+            $imageUrl = $node->filter('img')->attr('src');
+            $imageUrl = str_replace("s=40&", "s=80&", $imageUrl);
+            $contributors[] = (object)[
+                'userName' => str_replace("/", "", $node->attr('href')),
+                'userBaseUrl' => $userUrl,
+                'userImage' => $imageUrl,
+            ];
+
+
+        }
 
         return $contributors;
     }
