@@ -112,7 +112,7 @@ class ContributorSearcher
             $userId = str_replace("@", "", $node->filter('img')->attr('alt'));
             $userUrl = "https://github.com/".$userId;
             $imageUrl = $node->filter('img')->attr('src');
-            $imageUrl = str_replace("s=40&", "s=80&", $imageUrl);
+            $imageUrl = str_replace("s=40&", "s=160&", $imageUrl);
             $contributors[] = (object)[
                 'userName' => $userId,
                 'userBaseUrl' => $userUrl,
@@ -127,7 +127,7 @@ class ContributorSearcher
 
             $userUrl = "https://github.com".$node->attr('href');
             $imageUrl = $node->filter('img')->attr('src');
-            $imageUrl = str_replace("s=40&", "s=80&", $imageUrl);
+            $imageUrl = str_replace("s=40&", "s=160&", $imageUrl);
             $contributors[] = (object)[
                 'userName' => str_replace("/", "", $node->attr('href')),
                 'userBaseUrl' => $userUrl,
