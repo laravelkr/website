@@ -116,18 +116,19 @@
                                 @foreach(array_reverse(config('docs.versions')) as $supportVersion => $versionStatus)
                                     @php
                                         $deprecated = $versionStatus['deprecatedAt']<$today;
+                                        $documentStatus = [];
+                                        if($versionStatus['lts'])
+                                            $documentStatus[]="LTS";
+                                        if($versionStatus['in_translation'])
+                                            $documentStatus[]="번역중";
+                                        if($deprecated)
+                                            $documentStatus[]="지원종료";
                                     @endphp
-                                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?"default":"" }}" href="{{ route('docs.show', [$supportVersion]) }}">
+                                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }} {{ $supportVersion == config('docs.default')?"default":"" }} {{ $versionStatus['in_translation']?"disabled":"" }}"
+                                       href="{{ $versionStatus['in_translation']?"#":route('docs.show', [$supportVersion]) }}">
                                         {{ $supportVersion }}
-                                        @if($versionStatus['lts'] || $deprecated)
-                                            (
-                                            {{ $versionStatus['lts']?"LTS":"" }}
-
-                                            @if($versionStatus['lts'] && $deprecated)
-                                                ,
-                                            @endif
-                                            {{ $deprecated?"지원종료":"" }}
-                                            )
+                                        @if(count($versionStatus))
+                                            ({{ implode(",", $documentStatus) }})
                                         @endif
                                     </a>
                                 @endforeach

@@ -79,7 +79,6 @@ class DocsController extends Controller
             $version = $this->defaultVersions;
         }
 
-        // 5.3 이상 버전에 한해서 기본 문서를 readme 로 설정
         if ($doc === null) {
             $doc = 'README';
         }
@@ -89,74 +88,81 @@ class DocsController extends Controller
         } // 지원하는 버전이 아니면 기본 버전으로 이동
         elseif ($this->isValidVersion($version)) {
             return redirect(route('docs.show', [$this->defaultVersions, $doc]));
+        } elseif ($this->isInTranslationVersion($version)) {
+
+            \Toastr::info($version." 문서는 현재 번역 중입니다", null, [
+                "positionClass" => "toast-top-full-width",
+            ]);
+
+            return redirect(route('docs.show', [$this->defaultVersions, $doc]));
         }
 
-        $args = Cache::remember('document.'.$version.'.'.$doc, self::CACHE_SECONDS,
-            function () use ($version, $doc) {
+
+        $args = Cache::remember('document.'.$version.'.'.$doc, self::CACHE_SECONDS, function () use ($version, $doc) {
 
 
-                $notificationMessage = '';
-                if ($this->checkDeprecated($version)) {
-                    $notificationMessage = $this->getDeprecatedNotificationMessage($version, $doc);
-                }
+            $notificationMessage = '';
+            if ($this->checkDeprecated($version)) {
+                $notificationMessage = $this->getDeprecatedNotificationMessage($version, $doc);
+            }
 
 
-                $this->navigatorProvider->setVersion($version);
-                $this->navigatorProvider->setLanguage('ko');
-                $tableContent = $this->navigatorProvider->getContent();
+            $this->navigatorProvider->setVersion($version);
+            $this->navigatorProvider->setLanguage('ko');
+            $tableContent = $this->navigatorProvider->getContent();
 
-                $this->articleProvider->setVersion($version);
-                $this->articleProvider->setDocumentFilename($doc);
+            $this->articleProvider->setVersion($version);
+            $this->articleProvider->setDocumentFilename($doc);
 
-                $this->articleProvider->setLanguage('ko');
-                $krContent = $this->articleProvider->getContent();
-                $subTableContent = $this->articleProvider->getSubTableContent();
-
-
-                $this->articleProvider->setLanguage('en');
-                $enContent = $this->articleProvider->getContent();
+            $this->articleProvider->setLanguage('ko');
+            $krContent = $this->articleProvider->getContent();
+            $subTableContent = $this->articleProvider->getSubTableContent();
 
 
-                try {
-                    $enUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('en', $version, $doc);
-                    $enTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $enUpdated)->diffForHumans();
-                } catch (CommitInformationNotFoundException $exception) {
-                    $enUpdated = null;
-                    $enTimeAgoUpdate = null;
-
-                }
-
-                try {
-
-                    $krUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('kr', $version, $doc);
-                    $krTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $krUpdated)->diffForHumans();
-                } catch (CommitInformationNotFoundException $exception) {
-                    $krUpdated = null;
-                    $krTimeAgoUpdate = null;
-                }
+            $this->articleProvider->setLanguage('en');
+            $enContent = $this->articleProvider->getContent();
 
 
-                $this->contributorSearcher->setBranch($version);
+            try {
+                $enUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('en', $version, $doc);
+                $enTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $enUpdated)->diffForHumans();
+            } catch (CommitInformationNotFoundException $exception) {
+                $enUpdated = null;
+                $enTimeAgoUpdate = null;
 
-                try {
+            }
 
-                    $contributors = $this->contributorSearcher->getContributors($doc);
-                } catch (ConnectException $exception) {
-                    $contributors = [];
-                }
+            try {
+
+                $krUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('kr', $version, $doc);
+                $krTimeAgoUpdate = Carbon::createFromFormat(DateTime::ISO8601, $krUpdated)->diffForHumans();
+            } catch (CommitInformationNotFoundException $exception) {
+                $krUpdated = null;
+                $krTimeAgoUpdate = null;
+            }
 
 
-                $links = $this->navigatorLinkExtractor->extractToArray($tableContent);
-                $this->navigatorLinkLocationProvider->setLinks($links);
-                $this->navigatorLinkLocationProvider->setNowDocumentIndex($doc);
-                $nowLink = $this->navigatorLinkLocationProvider->getNowLink();
-                $prevLink = $this->navigatorLinkLocationProvider->getPrevLink();
-                $nextLink = $this->navigatorLinkLocationProvider->getNextLink();
+            $this->contributorSearcher->setBranch($version);
 
-                return compact('version', 'tableContent', 'subTableContent', 'krContent', 'enContent', 'doc',
-                    'enUpdated', 'krUpdated', 'enTimeAgoUpdate', 'krTimeAgoUpdate', 'contributors', 'nowLink',
-                    'prevLink', 'nextLink', 'notificationMessage');
-            });
+            try {
+
+                $contributors = $this->contributorSearcher->getContributors($doc);
+            } catch (ConnectException $exception) {
+                $contributors = [];
+            }
+
+
+            $links = $this->navigatorLinkExtractor->extractToArray($tableContent);
+            $this->navigatorLinkLocationProvider->setLinks($links);
+            $this->navigatorLinkLocationProvider->setNowDocumentIndex($doc);
+            $nowLink = $this->navigatorLinkLocationProvider->getNowLink();
+            $prevLink = $this->navigatorLinkLocationProvider->getPrevLink();
+            $nextLink = $this->navigatorLinkLocationProvider->getNextLink();
+
+            return compact('version', 'tableContent', 'subTableContent', 'krContent', 'enContent', 'doc',
+                'enUpdated', 'krUpdated', 'enTimeAgoUpdate', 'krTimeAgoUpdate', 'contributors', 'nowLink',
+                'prevLink', 'nextLink', 'notificationMessage');
+        });
 
         $args['notices'] = Notice::getAll();
         $args['banners'] = Banner::getAll();
@@ -188,5 +194,10 @@ class DocsController extends Controller
         return "라라벨 ".$version."버전은 공식 유지보수 기간이 종료됨에 따라 한글 문서번역도 종료되었습니다. 최신 데이터를 확인하기 위해서는 공식 홈페이지를 참조해주시기 바랍니다<br /><br /><a class='btn bg-white btn-outline-primary text-primary' href='".route('docs.show',
                 [config('docs.default'), $doc])."'>".config('docs.default')."버전 바로가기</a>";
 
+    }
+
+    private function isInTranslationVersion($version)
+    {
+        return config('docs.versions')[$version]['in_translation'];
     }
 }

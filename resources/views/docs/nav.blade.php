@@ -62,19 +62,19 @@
                     @if($version == $supportVersion)
                         @php
                             $deprecated = $versionStatus['deprecatedAt']<$today;
+                            $documentStatus = [];
+                            if($versionStatus['lts'])
+                                $documentStatus[]="LTS";
+                            if($versionStatus['in_translation'])
+                                $documentStatus[]="번역중";
+                            if($deprecated)
+                                $documentStatus[]="지원종료";
                         @endphp
                         <strong id="selected_version" data-version="{{ $version }}"
-                                class="{{ $deprecated?"deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}">
+                                class="{{ $deprecated?"deprecated":"" }} {{ $supportVersion == config('docs.default')?"default":"" }}">
                             {{ $supportVersion }}
-                            @if($versionStatus['lts'] || $deprecated)
-                                (
-                                {{ $versionStatus['lts']?"LTS":"" }}
-
-                                @if($versionStatus['lts'] && $deprecated)
-                                    ,
-                                @endif
-                                {{ $deprecated?"지원종료":"" }}
-                                )
+                            @if(count($versionStatus))
+                                ({{ implode(", ", $documentStatus) }})
                             @endif
                         </strong>
                     @endif
@@ -87,34 +87,28 @@
 
                     @php
                         $deprecated = $versionStatus['deprecatedAt']<$today;
+                        $documentStatus = [];
+                        if($versionStatus['lts'])
+                            $documentStatus[]="LTS";
+                        if($versionStatus['in_translation'])
+                            $documentStatus[]="번역중";
+                        if($deprecated)
+                            $documentStatus[]="지원종료";
                     @endphp
 
-                    <a class="dropdown-item{{ $deprecated?" deprecated":"" }}{{ $supportVersion == config('docs.default')?" default":"" }}" href="{{ route('docs.show', [$supportVersion, $doc]) }}">
+                    <a class="dropdown-item {{ $deprecated?"deprecated":"" }} {{ $supportVersion == config('docs.default')?"default":"" }} {{ $versionStatus['in_translation']?"disabled":"" }}"
+                       href="{{ $versionStatus['in_translation']?"#":route('docs.show', [$supportVersion, $doc]) }}">
                         @if($version == $supportVersion)
                             <strong>
                                 {{ $supportVersion }}
-                                @if($versionStatus['lts'] || $deprecated)
-                                    (
-                                    {{ $versionStatus['lts']?"LTS":"" }}
-
-                                    @if($versionStatus['lts'] && $deprecated)
-                                        ,
-                                    @endif
-                                    {{ $deprecated?"지원종료":"" }}
-                                    )
+                                @if(count($versionStatus))
+                                    ({{ implode(", ", $documentStatus) }})
                                 @endif
                             </strong>
                         @else
                             {{ $supportVersion }}
-                            @if($versionStatus['lts'] || $deprecated)
-                                (
-                                {{ $versionStatus['lts']?"LTS":"" }}
-
-                                @if($versionStatus['lts'] && $deprecated)
-                                    ,
-                                @endif
-                                {{ $deprecated?"지원종료":"" }}
-                                )
+                            @if(count($versionStatus))
+                                ({{ implode(", ", $documentStatus) }})
                             @endif
                         @endif
                     </a>
