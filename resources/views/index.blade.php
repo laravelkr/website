@@ -127,7 +127,7 @@
                                     <a class="dropdown-item {{ $deprecated?"deprecated":"" }} {{ $supportVersion == config('docs.default')?"default":"" }} {{ $versionStatus['in_translation']?"disabled":"" }}"
                                        href="{{ $versionStatus['in_translation']?"#":route('docs.show', [$supportVersion]) }}">
                                         {{ $supportVersion }}
-                                        @if(count($versionStatus))
+                                        @if(count($documentStatus))
                                             ({{ implode(",", $documentStatus) }})
                                         @endif
                                     </a>

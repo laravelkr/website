@@ -73,7 +73,7 @@
                         <strong id="selected_version" data-version="{{ $version }}"
                                 class="{{ $deprecated?"deprecated":"" }} {{ $supportVersion == config('docs.default')?"default":"" }}">
                             {{ $supportVersion }}
-                            @if(count($versionStatus))
+                            @if(count($documentStatus))
                                 ({{ implode(", ", $documentStatus) }})
                             @endif
                         </strong>
@@ -101,13 +101,13 @@
                         @if($version == $supportVersion)
                             <strong>
                                 {{ $supportVersion }}
-                                @if(count($versionStatus))
+                                @if(count($documentStatus))
                                     ({{ implode(", ", $documentStatus) }})
                                 @endif
                             </strong>
                         @else
                             {{ $supportVersion }}
-                            @if(count($versionStatus))
+                            @if(count($documentStatus))
                                 ({{ implode(", ", $documentStatus) }})
                             @endif
                         @endif
