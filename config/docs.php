@@ -59,7 +59,7 @@ return [
             'in_translation' => false,
         ],
     ],
-    'default' => '6.x',
+    'default' => '7.x',
     'resource_root' => 'documents',
     'basePath' => 'baseGit',
 
