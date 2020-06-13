@@ -25,6 +25,10 @@
     @if(config('algoria.docsearch.apiKey'))
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
     @endif
+
+    <style>
+        article img {max-width: 100%;}
+    </style>
 @endsection
 
 @section('sidebar')
