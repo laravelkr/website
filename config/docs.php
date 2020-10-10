@@ -64,7 +64,7 @@ return [
             'in_translation' => false,
         ],
     ],
-    'default' => '7.x',
+    'default' => '8.x',
     'resource_root' => 'documents',
     'basePath' => 'baseGit',
 
