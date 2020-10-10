@@ -61,7 +61,7 @@ return [
         '8.x' => [
             'deprecatedAt' => '2021-09-08',
             'lts' => false,
-            'in_translation' => true,
+            'in_translation' => false,
         ],
     ],
     'default' => '7.x',
