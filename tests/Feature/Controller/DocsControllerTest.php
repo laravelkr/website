@@ -1,5 +1,7 @@
 <?php
 
+namespace Tests\Feature\Controller;
+
 use App\Services\Documents\Location;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
@@ -22,7 +24,7 @@ class DocsControllerTest extends TestCase
      * @param $version
      * @param $urls
      */
-    public function Docs(string $version, array $urls)
+    public function check_all_document(string $version, array $urls)
     {
 
 
@@ -31,9 +33,9 @@ class DocsControllerTest extends TestCase
         $url = Arr::random($urls);
 
         if (Str::endsWith($url, "/api")) {
-            $this->get($url)->assertStatus(301);
+            $this->get($url)->assertRedirect();
         } else {
-            $this->get($url)->assertStatus(200);
+            $this->get($url)->assertOk();
         }
     }
 
@@ -68,4 +70,50 @@ class DocsControllerTest extends TestCase
         return $return;
     }
 
+
+    /**
+     * @test
+     */
+    public function check_redirect_if_not_exist_version_and_document_name()
+    {
+
+        $this->get(url('/docs'))->assertRedirect(route('docs.show', [config('docs.default')]));
+
+    }
+
+    /**
+     * @test
+     */
+    public function check_redirect_if_exist_only_document_name()
+    {
+
+        $this->get(route('docs.show', ['mix']))
+            ->assertRedirect(route('docs.show', [config('docs.default'), 'mix']));
+
+        $this->get(route('docs.show', ['eloquent']))
+            ->assertRedirect(route('docs.show', [config('docs.default'), 'eloquent']));
+
+    }
+
+    /**
+     * @test
+     */
+    public function check_redirect_if_invalid_version()
+    {
+
+        $this->get(route('docs.show', ['INVALID_VERSION', 'eloquent']))
+            ->assertRedirect(route('docs.show', [config('docs.default'), 'eloquent']));
+
+    }
+
+    /**
+     * @test
+     */
+    public function check_redirect_if_not_exist_document()
+    {
+
+        $this->get(route('docs.show', [config('docs.default'), 'NOT_EXISTS']))
+            ->assertRedirect(route('docs.show', [config('docs.default')]));
+
+    }
 }

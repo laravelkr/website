@@ -26,14 +26,18 @@ Route::get('about', [
     'uses' => 'AboutController@index'
 ]);
 
-Route::get('docs/{version?}/{doc?}', [
+Route::get('docs', function () {
+    return redirect(route('docs.show', [config('docs.default')]));
+});
+
+Route::get('docs/{version}/{doc?}', [
     'as' => 'docs.show',
     'uses' => 'DocsController@showDocs'
 ]);
 
 Route::get('api/{version?}', [
     'as' => 'api.redirect',
-    'uses' => function($version = 'kr'){
+    'uses' => function ($version = 'kr') {
         return Redirect::to('https://laravel.com/api/'.$version);
     }
 ]);
@@ -65,7 +69,7 @@ Route::group(['prefix' => 'auth', 'as' => 'social.'], function () {
 
 Route::group(
     ['prefix' => 'qna'],
-    function(){
+    function () {
         Route::get(
             '/',
             [

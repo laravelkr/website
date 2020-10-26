@@ -5,12 +5,12 @@ namespace App\Http\Controllers;
 use App\Banner;
 use App\Exceptions\CommitInformationNotFoundException;
 use App\Notice;
-use App\Services\Github\ContributorSearcher;
 use App\Services\Documents\UpdateDateInterface;
+use App\Services\Github\ContributorSearcher;
+use App\Services\Markdown\AsideMenuBar;
 use App\Services\Markdown\ManualArticle;
 use App\Services\Markdown\ManualMarkdownProvider;
 use App\Services\Markdown\ManualNavigator;
-use App\Services\Markdown\AsideMenuBar;
 use App\Services\Navigator\LinkExtractor;
 use App\Services\Navigator\Location;
 use Carbon\Carbon;
@@ -73,28 +73,32 @@ class DocsController extends Controller
         $this->asideMenuBar = $asideMenuBar;
     }
 
-    public function showDocs($version = null, $doc = null)
+    public function showDocs($version, $doc = null)
     {
-        if ($version === null) {
-            $version = $this->defaultVersions;
-        }
 
-        if ($doc === null) {
-            $doc = 'README';
-        }
-
-        if (preg_match('/[0-9.x]+/', $version, $matches) === 0) {
+        //버전을 지정하지 않고 문서로 바로 접속한 경우
+        if ($doc === null && $this->isDocument($version)) {
             return redirect(route('docs.show', [$this->defaultVersions, $version]));
-        } // 지원하는 버전이 아니면 기본 버전으로 이동
-        elseif ($this->isValidVersion($version)) {
+        }
+
+        // 지원하는 버전이 아니면 기본 버전으로 이동
+        if ($this->isInvalidVersion($version)) {
             return redirect(route('docs.show', [$this->defaultVersions, $doc]));
-        } elseif ($this->isInTranslationVersion($version)) {
+        }
+
+        //번역중인 버전에 대한 안내표시
+        if ($this->isInTranslationVersion($version)) {
 
             \Toastr::info($version." 문서는 현재 번역 중입니다", null, [
                 "positionClass" => "toast-top-full-width",
             ]);
 
             return redirect(route('docs.show', [$this->defaultVersions, $doc]));
+        }
+
+        //지정하지 않은 파일은 재선언해준다
+        if ($doc === null) {
+            $doc = 'README';
         }
 
 
@@ -177,7 +181,7 @@ class DocsController extends Controller
      */
     private function isValidVersion($version): bool
     {
-        return in_array($version, array_keys(config('docs.versions'))) === false;
+        return in_array($version, array_keys(config('docs.versions')));
     }
 
     private function checkDeprecated($version)
@@ -188,7 +192,7 @@ class DocsController extends Controller
 
     }
 
-    private function getDeprecatedNotificationMessage($version, $doc)
+    private function getDeprecatedNotificationMessage($version, $doc): string
     {
 
         return "라라벨 ".$version."버전은 공식 유지보수 기간이 종료됨에 따라 한글 문서번역도 종료되었습니다. 최신 데이터를 확인하기 위해서는 공식 홈페이지를 참조해주시기 바랍니다<br /><br /><a class='btn bg-white btn-outline-primary text-primary' href='".route('docs.show',
@@ -199,5 +203,23 @@ class DocsController extends Controller
     private function isInTranslationVersion($version)
     {
         return config('docs.versions')[$version]['in_translation'];
+    }
+
+    /**
+     * @param $version
+     * @return bool
+     */
+    protected function isDocument($version): bool
+    {
+        return preg_match('/[0-9].[0-9x]/', $version, $matches) === 0;
+    }
+
+    /**
+     * @param $version
+     * @return bool
+     */
+    protected function isInvalidVersion($version): bool
+    {
+        return $this->isValidVersion($version) === false;
     }
 }
