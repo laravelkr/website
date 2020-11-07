@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,7 +18,7 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
-Route::auth();
+Auth::routes();
 
 Route::get('/home', 'HomeController@index');
 
