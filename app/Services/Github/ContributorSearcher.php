@@ -122,7 +122,7 @@ class ContributorSearcher
 
         if (count($contributors) == 0) {
 
-            $node = $this->crawler->filter('.f6 a')->first();
+            $node = $this->crawler->filter('.Details a')->first();
 
 
             $userUrl = "https://github.com".$node->attr('href');
