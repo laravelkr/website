@@ -63,13 +63,13 @@
             @yield('last-modify')
         </div>
 
-        <?php /** @var \App\Banner[]|Illuminate\Support\Collection $banners */?>
+        <?php /** @var \App\Models\Banner[]|Illuminate\Support\Collection $banners */?>
         @if($banners->count())
 
             <div class="container-fluid">
                 <div id="banner-slide" class="owl-carousel">
 
-                <?php /** @var \App\Banner $banner */?>
+                <?php /** @var \App\Models\Banner $banner */?>
                 @foreach($banners->shuffle() as $banner)
                     <div class="item">
                         <a href="{{ $banner->url }}" target="_blank"

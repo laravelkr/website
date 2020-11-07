@@ -3,10 +3,6 @@
 namespace App\Exceptions;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -18,10 +14,7 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        AuthorizationException::class,
-        HttpException::class,
-        ModelNotFoundException::class,
-        ValidationException::class,
+        //
     ];
 
     /**
@@ -35,12 +28,22 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Register the exception handling callbacks for the application.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
+    }
+
+    /**
      * Report or log an exception.
      *
-     * @param  Throwable $exception
+     * @param  \Throwable $exception
      * @return void
      *
-     * @throws Throwable
+     * @throws \Throwable
      */
     public function report(Throwable $exception)
     {

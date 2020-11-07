@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Notice;
+use App\Models\Notice;
 use App\Services\AllContributors\Contributors;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\View\View;
