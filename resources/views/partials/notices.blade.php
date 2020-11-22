@@ -1,6 +1,6 @@
 <?php
 /**
- * @var \App\Notice[]|\Illuminate\Support\Collection $notices
+ * @var \App\Models\Notice[]|\Illuminate\Support\Collection $notices
  */
 
 $today = now();

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Banner;
+use App\Models\Banner;
 use App\Exceptions\CommitInformationNotFoundException;
-use App\Notice;
+use App\Models\Notice;
 use App\Services\Documents\UpdateDateInterface;
 use App\Services\Github\ContributorSearcher;
 use App\Services\Markdown\AsideMenuBar;
