@@ -26,15 +26,19 @@ php artisan docs:update #각 버전별 문서 파일을 다운로드 및 업데�
 ## Contributors
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://kkame.net"><img src="https://avatars3.githubusercontent.com/u/4939813?v=4" width="100px;" alt="KKAME"/><br /><sub><b>KKAME</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=kkame" title="Code">💻</a></td>
-    <td align="center"><a href="http://findstar.pe.kr"><img src="https://avatars2.githubusercontent.com/u/1266944?v=4" width="100px;" alt="Jung-Soo Ahn"/><br /><sub><b>Jung-Soo Ahn</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=findstar" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/K-Connor"><img src="https://avatars0.githubusercontent.com/u/45898974?v=4" width="100px;" alt="K.Connor"/><br /><sub><b>K.Connor</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=K-Connor" title="Code">💻</a></td>
+    <td align="center"><a href="https://kkame.net"><img src="https://avatars3.githubusercontent.com/u/4939813?v=4" width="100px;" alt=""/><br /><sub><b>KKAME</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=kkame" title="Code">💻</a></td>
+    <td align="center"><a href="http://findstar.pe.kr"><img src="https://avatars2.githubusercontent.com/u/1266944?v=4" width="100px;" alt=""/><br /><sub><b>Jung-Soo Ahn</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=findstar" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/K-Connor"><img src="https://avatars0.githubusercontent.com/u/45898974?v=4" width="100px;" alt=""/><br /><sub><b>K.Connor</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=K-Connor" title="Code">💻</a></td>
+    <td align="center"><a href="http://ceobe.dev"><img src="https://avatars2.githubusercontent.com/u/32331576?v=4" width="100px;" alt=""/><br /><sub><b>cr.lgl</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=cr-lgl" title="Code">💻</a></td>
   </tr>
 </table>
 
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## Acknowledgments
