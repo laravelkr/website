@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DocsController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,29 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [
-    'as' => 'home',
-    'uses' => 'HomeController@index'
-]);
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
-
-
-Route::get('about', [
-    'as' => 'about',
-    'uses' => 'AboutController@index'
-]);
+Route::get('home', [HomeController::class, 'index']);
 
 Route::get('docs', function () {
     return redirect(route('docs.show', [config('docs.default')]));
 });
 
-Route::get('docs/{version}/{doc?}', [
-    'as' => 'docs.show',
-    'uses' => 'DocsController@showDocs'
-]);
+Route::get('docs/{version}/{doc?}', [DocsController::class, 'showDocs'])->name('docs.show');
 
 Route::get('api/{version?}', [
     'as' => 'api.redirect',
