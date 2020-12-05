@@ -151,7 +151,7 @@
             <div class="row fullscreen justify-content-center align-items-center">
                 <div class="col-md-10 col-12">
                     <div class="banner-content text-center mb-20">
-                        <a href="http://www.yes24.com/Product/Goods/95757831" target="_blank">
+                        <a href="https://bit.ly/3ofdmrG" target="_blank">
 {{--                        <h4 class="text-white mb-20 text-uppercase">Discover the Colorful World</h4>--}}
                         <h1 class="text-white mb-20 mt-80 text-uppercase">라라벨 Up & Running</h1>
                         <p class="text-white">처음부터 제대로 배우는 라라벨</p>
