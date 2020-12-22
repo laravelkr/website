@@ -15,11 +15,14 @@ git clone git@github.com:laravelkr/website.git
 cd website
 
 composer install
+composer run post-root-package-install # .env  파일에 개인 GITHUB_TOKEN 입력
+composer run post-create-project-cmd
+
 npm ci
+npm run development
 
 php artisan docs:initialize #laravelkr/docs 레포지터리를 다운로드
 php artisan docs:update #각 버전별 문서 파일을 다운로드 및 업데이트
-
 ```
 
 
