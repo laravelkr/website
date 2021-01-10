@@ -33,15 +33,17 @@ php artisan docs:update #각 버전별 문서 파일을 다운로드 및 업데�
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://kkame.net"><img src="https://avatars3.githubusercontent.com/u/4939813?v=4" width="100px;" alt=""/><br /><sub><b>KKAME</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=kkame" title="Code">💻</a></td>
-    <td align="center"><a href="http://findstar.pe.kr"><img src="https://avatars2.githubusercontent.com/u/1266944?v=4" width="100px;" alt=""/><br /><sub><b>Jung-Soo Ahn</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=findstar" title="Code">💻</a></td>
-    <td align="center"><a href="https://github.com/K-Connor"><img src="https://avatars0.githubusercontent.com/u/45898974?v=4" width="100px;" alt=""/><br /><sub><b>K.Connor</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=K-Connor" title="Code">💻</a></td>
-    <td align="center"><a href="http://ceobe.dev"><img src="https://avatars2.githubusercontent.com/u/32331576?v=4" width="100px;" alt=""/><br /><sub><b>cr.lgl</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=cr-lgl" title="Code">💻</a></td>
+    <td align="center"><a href="https://kkame.net"><img src="https://avatars3.githubusercontent.com/u/4939813?v=4?s=100" width="100px;" alt=""/><br /><sub><b>KKAME</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=kkame" title="Code">💻</a></td>
+    <td align="center"><a href="http://findstar.pe.kr"><img src="https://avatars2.githubusercontent.com/u/1266944?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Jung-Soo Ahn</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=findstar" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/K-Connor"><img src="https://avatars0.githubusercontent.com/u/45898974?v=4?s=100" width="100px;" alt=""/><br /><sub><b>K.Connor</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=K-Connor" title="Code">💻</a></td>
+    <td align="center"><a href="http://ceobe.dev"><img src="https://avatars2.githubusercontent.com/u/32331576?v=4?s=100" width="100px;" alt=""/><br /><sub><b>cr.lgl</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=cr-lgl" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/AkiaCode"><img src="https://avatars0.githubusercontent.com/u/71239005?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Aki</b></sub></a><br /><a href="https://github.com/laravelkr/website/commits?author=AkiaCode" title="Code">💻</a></td>
   </tr>
 </table>
 
-<!-- markdownlint-enable -->
+<!-- markdownlint-restore -->
 <!-- prettier-ignore-end -->
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 ## Acknowledgments
