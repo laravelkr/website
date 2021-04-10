@@ -8,7 +8,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^7.4",
+        "php": "^8.0",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-pcre": "*",
@@ -17,11 +17,13 @@
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.12",
+        "laravel/octane": "^0.1.1",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
         "oriceon/toastr-5-laravel": "dev-master",
         "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-menu": "^3.3",
+        "spiral/roadrunner": "^2.0",
         "symfony/css-selector": "^5.2",
         "symfony/dom-crawler": "^5.2"
     },
