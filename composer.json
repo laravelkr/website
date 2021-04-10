@@ -20,15 +20,13 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
         "oriceon/toastr-5-laravel": "dev-master",
-        "sentry/sentry-laravel": "^1.9.0",
+        "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-menu": "^3.3",
-        "symfony/css-selector": "3.1.*",
-        "symfony/dom-crawler": "3.1.*"
+        "symfony/css-selector": "^5.2",
+        "symfony/dom-crawler": "^5.2"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.8.1",
-        "beyondcode/laravel-dump-server": "^1.0",
-        "codedungeon/phpunit-result-printer": "^0.29.3",
+        "barryvdh/laravel-ide-helper": "^2.10",
         "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
         "mockery/mockery": "^1.4.2",
