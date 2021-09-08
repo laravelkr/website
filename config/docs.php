@@ -59,7 +59,7 @@ return [
             'in_translation' => false,
         ],
         '8.x' => [
-            'deprecatedAt' => '2021-09-08',
+            'deprecatedAt' => '2023-01-24',
             'lts' => false,
             'in_translation' => false,
         ],
