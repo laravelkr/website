@@ -21,7 +21,7 @@ class Banner
 
         $return = collect();
 
-
+/*
         $banner = new self();
         $banner->code = 'brich';
         $banner->url = 'https://recruit.brich.co.kr/';
@@ -36,7 +36,7 @@ class Banner
         $banner->expiredAt = '2019-07-31';
 
         if (date('Y-m-d') < $banner->expiredAt)
-            $return->push($banner);
+            $return->push($banner);*/
 
         return $return;
     }
