@@ -480,11 +480,6 @@
                     <p>
                         LARAVEL IS A TRADEMARK OF TAYLOR OTWELL. COPYRIGHT © TAYLOR OTWELL .
                     </p>
-                    <p>
-                        채용공고 등록이나 문의를 원하시는 분들은
-                        <a href="https://forms.gle/LyFzsfKUGyLSEWeN9" class="text-primary">여기</a>
-                        로 연락주세요
-                    </p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     <p class="footer-text">Copyright &copy;<script>document.write(new Date().getFullYear());</script>
                         All rights reserved | This template is made with <i class="fa fa-heart-o"
