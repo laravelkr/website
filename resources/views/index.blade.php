@@ -45,6 +45,10 @@
     {{--<link rel="stylesheet" href="/assets/vendor/adventure/css/animate.min.css">--}}
     <link rel="stylesheet" href="/assets/vendor/adventure/css/owl.carousel.css">
     <link rel="stylesheet" href="/assets/vendor/adventure/css/main.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/v4-shims.min.css" integrity="sha512-fHavkBby/gcFEB2taaBfG0DLdHRGrnvkWQNXVZ5Yb/Fj6LkogecQUd6oyvBVsrWPaHSxs5tNza6LUW/Y6Az9lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href='{{ mix('css/common.css') }}' rel='stylesheet' type='text/css'>
     <link href='{{ mix('css/index.css') }}' rel='stylesheet' type='text/css'>
 </head>
@@ -92,19 +96,10 @@
                                 유저 모임
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="https://www.facebook.com/groups/laravelkorea/"
-                                   target="_blank">
-                                    라라벨 코리아
+                                <a class="dropdown-item" href="https://discord.gg/9BuTr5K63g/" target="_blank">
+                                    <i class="fab fa-discord"></i>
+                                    Discord
                                 </a>
-                                <a class="dropdown-item" href="https://www.facebook.com/groups/655071604594451/"
-                                   target="_blank">
-                                    모던 PHP 유저 그룹
-                                </a>
-                                <a class="dropdown-item" href="https://open.kakao.com/o/g3dWlf0/"
-                                   target="_blank">
-                                    카카오톡 오픈채팅
-                                </a>
-
                             </div>
                         </li>
                         <li class="dropdown">
@@ -291,13 +286,13 @@
                 <div class="single-feature">
                     <a href="https://open.kakao.com/o/g3dWlf0" target="_blank">
                         <div class="title d-flex flex-row pb-20">
-                            <span class="lnr"><i class="fa fa-comment text-warning" aria-hidden="true"></i></span>
+                            <span class="lnr"><i class="fab fa-discord" aria-hidden="true"></i></span>
                             <h4>
-                                라라벨 카카오톡 오픈채팅
+                                디스코드
                             </h4>
                         </div>
                         <p>
-                            카카오톡 오픈채팅을 통해 다른 분들과 같이 학습을 해보세요
+                            디스코드를 통해 다른 분들과 같이 학습을 해보세요
                         </p>
                     </a>
                 </div>

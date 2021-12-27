@@ -45,6 +45,11 @@
 
     <link href='https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.2.0/styles/tomorrow-night.min.css' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/v4-shims.min.css" integrity="sha512-fHavkBby/gcFEB2taaBfG0DLdHRGrnvkWQNXVZ5Yb/Fj6LkogecQUd6oyvBVsrWPaHSxs5tNza6LUW/Y6Az9lQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     <link href='{{ mix('css/common.css') }}' rel='stylesheet' type='text/css'>
     <link href='{{ mix('css/docs.css') }}' rel='stylesheet' type='text/css'>
     @yield('head')
@@ -94,9 +99,9 @@
         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
     </span>
     <span id="kakao-open-chat">
-        <a href="https://open.kakao.com/o/g3dWlf0" target="_blank" data-toggle="tooltip" data-placement="left"
+        <a href="https://discord.gg/9BuTr5K63g/" target="_blank" data-toggle="tooltip" data-placement="left"
            title="혼자 공부하기 힘들 땐?">
-            <img src="{{ asset('assets/images/kakao.png') }}" alt="라라벨 카카오톡 오픈채팅">
+            <i class="fab fa-discord"></i>
         </a>
     </span>
 

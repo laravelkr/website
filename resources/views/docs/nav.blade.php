@@ -32,25 +32,11 @@
             </a>
         </li>
         <!-- Dropdown -->
-        <li class="dropdown">
-            <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
-                유저 모임
+        <li class="nav-item px-3">
+            <a class="nav-link" href="https://discord.gg/9BuTr5K63g/">
+                <i class="fab fa-discord"></i>
+                유저모임(discord)
             </a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item" href="https://www.facebook.com/groups/laravelkorea/"
-                   target="_blank">
-                    라라벨 코리아
-                </a>
-                <a class="dropdown-item" href="https://www.facebook.com/groups/655071604594451/"
-                   target="_blank">
-                    모던 PHP 유저 그룹
-                </a>
-                <a class="dropdown-item" href="https://open.kakao.com/o/g3dWlf0/"
-                   target="_blank">
-                    카카오톡 오픈채팅
-                </a>
-
-            </div>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">
