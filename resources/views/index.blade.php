@@ -96,7 +96,7 @@
                                 유저 모임
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="https://discord.gg/9BuTr5K63g/" target="_blank">
+                                <a class="dropdown-item" href="https://discord.gg/9BuTr5K63g" target="_blank">
                                     <i class="fab fa-discord"></i>
                                     Discord
                                 </a>
