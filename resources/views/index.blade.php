@@ -73,9 +73,6 @@
                     <ul class="navbar-nav">
                         <li><a href="{{ route('home') }}">Home</a></li>
                         <li>
-                            <a href="https://wiki.modernpug.org/display/LAR/questions/all" target="_blank">QNA</a>
-                        </li>
-                        <li>
                             <a href="https://github.com/laravelkr/website/issues/2" target="_blank">
                                 라라벨로 만든 사이트
                             </a>
@@ -315,7 +312,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-4 col-md-6 ">
+            <div class="col-md-6 ">
                 <div class="single-feature mb-30">
                     <a target="_blank" href="https://modernpug.github.io/php-the-right-way/">
                         <div class="title d-flex flex-row pb-20">
@@ -330,7 +327,7 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 ">
+            <div class="col-md-6 ">
                 <div class="single-feature mb-30">
                     <a target="_blank" href="https://www.php-fig.org/psr/">
                         <div class="title d-flex flex-row pb-20">
@@ -341,21 +338,6 @@
                         </div>
                         <p>
                             PHP의 표준 개발 권고사항입니다
-                        </p>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 ">
-                <div class="single-feature mb-30">
-                    <a target="_blank" href="https://wiki.modernpug.org/display/LAR/questions/all">
-                        <div class="title d-flex flex-row pb-20">
-                            <span class="lnr lnr-question-circle"></span>
-                            <h4>
-                                묻고답하기
-                            </h4>
-                        </div>
-                        <p>
-                            다양한 주제에 대해서 질문하고 의견을 나눌 수 있습니다
                         </p>
                     </a>
                 </div>

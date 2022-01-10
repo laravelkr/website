@@ -21,7 +21,6 @@ class AsideMenuBar
      */
     protected $mainMenu = [
         '/home' => ['Text' => 'Home', 'Attribute' => []],
-        'https://wiki.modernpug.org/display/LAR/questions/all' => ['Text' => 'QNA', 'Attribute' => []],
         'https://github.com/laravelkr/website/issues/2' => ['Text' => '라라벨로 만든 사이트', 'Attribute' => []],
         'https://github.com/laravelkr/website/issues/3' => ['Text' => '기타 학습자료', 'Attribute' => []],
         'https://github.com/laravelkr/website/issues/4' => ['Text' => '스터디/행사', 'Attribute' => []],
