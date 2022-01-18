@@ -99,7 +99,7 @@
         <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
     </span>
     <span id="kakao-open-chat">
-        <a href="https://discord.gg/9BuTr5K63g/" target="_blank" data-toggle="tooltip" data-placement="left"
+        <a href="https://discord.gg/9BuTr5K63g" target="_blank" data-toggle="tooltip" data-placement="left"
            title="혼자 공부하기 힘들 땐?">
             <i class="fab fa-discord"></i>
         </a>

@@ -93,7 +93,7 @@
                                 유저 모임
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" href="https://discord.gg/9BuTr5K63g/" target="_blank">
+                                <a class="dropdown-item" href="https://discord.gg/9BuTr5K63g" target="_blank">
                                     <i class="fab fa-discord"></i>
                                     Discord
                                 </a>
@@ -281,7 +281,7 @@
             </div>
             <div class="col-lg-4 col-md-6 ">
                 <div class="single-feature">
-                    <a href="https://open.kakao.com/o/g3dWlf0" target="_blank">
+                    <a href="https://discord.gg/9BuTr5K63g" target="_blank">
                         <div class="title d-flex flex-row pb-20">
                             <span class="lnr"><i class="fab fa-discord" aria-hidden="true"></i></span>
                             <h4>
