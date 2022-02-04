@@ -9,6 +9,7 @@
 namespace Tests\Unit\Services\Github;
 
 
+use App\Exceptions\BadArgumentsException;
 use App\Services\Github\ContributorSearcher;
 use GuzzleHttp\Client;
 use Symfony\Component\DomCrawler\Crawler;
@@ -21,9 +22,9 @@ class ContributorSearcherTest extends TestCase
     /**
      * @test
      */
-    public function 브랜치를_지정하지_않을_경우_예외발생확인()
+    public function 브랜치를_지정하지_않을_경우_예외발생확인(): void
     {
-        $this->expectException(\App\Exceptions\BadArgumentsException::class);
+        $this->expectException(BadArgumentsException::class);
         $contributorSearcher = new ContributorSearcher(new Client(), new Crawler());
 
         $contributorSearcher->getContributors('documentation');
@@ -33,7 +34,7 @@ class ContributorSearcherTest extends TestCase
     /**
      * @test
      */
-    public function 정상확인()
+    public function 정상확인(): void
     {
 
         $contributorSearcher = new ContributorSearcher(new Client(), new Crawler());

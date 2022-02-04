@@ -15,24 +15,18 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Symfony\Component\DomCrawler\Crawler;
+use Throwable;
 
 class ContributorSearcher
 {
 
     /**
      * TODO 정식지원 API 확인 불가, 추후 API 추가시 변경 필요
-     * @var string
      */
-    private $baseUrl = "https://github.com/laravelkr/docs/contributors/%s/kr/%s";
-    /**
-     * @var Crawler
-     */
-    private $crawler;
-    /**
-     * @var Client
-     */
-    private $guzzle;
-    private $branch;
+    private string $baseUrl = "https://github.com/laravelkr/docs/contributors-list/%s/kr/%s";
+    private Crawler $crawler;
+    private Client $guzzle;
+    private string $branch;
 
 
     public function __construct(Client $guzzle, Crawler $crawler)
@@ -42,33 +36,26 @@ class ContributorSearcher
     }
 
 
-    public function setBranch(string $branch)
+    public function setBranch(string $branch): void
     {
-
         $this->branch = $branch;
     }
 
     /**
-     * @param $fileName
-     * @return array
      * @throws BadArgumentsException
      * @throws GuzzleException
-     * @throws ContributorNotFoundException
      */
     public function getContributors($fileName): array
     {
-
         try {
-
             $contributorsHtml = $this->searchContributors($fileName);
             $contributors = $this->convertHtmlToJson($contributorsHtml);
-        } catch (ContributorNotFoundException $exception) {
+        } catch (ContributorNotFoundException) {
             $contributors = [];
         }
 
 
         return $contributors;
-
     }
 
     /**
@@ -80,13 +67,11 @@ class ContributorSearcher
      */
     private function searchContributors(string $fileName): string
     {
-
         if (empty($this->branch)) {
             throw new BadArgumentsException();
         }
 
         try {
-
             $contributorsUrl = sprintf($this->baseUrl, "pre-kr-".$this->branch, $fileName.".md");
 
 
@@ -96,7 +81,6 @@ class ContributorSearcher
         } catch (ClientException $exception) {
             throw new ContributorNotFoundException();
         }
-
     }
 
     private function convertHtmlToJson(string $contributorsHtml): array
@@ -107,35 +91,18 @@ class ContributorSearcher
         $this->crawler->addHtmlContent($contributorsHtml);
 
 
-        $this->crawler->filter('a.avatar-link')->each(function (Crawler $node) use (&$contributors) {
-
-            $userId = str_replace("@", "", $node->filter('img')->attr('alt'));
+        $this->crawler->filter('a')->each(function (Crawler $node) use (&$contributors) {
+            $userId = str_replace("/", "", $node->attr('href'));
             $userUrl = "https://github.com/".$userId;
             $imageUrl = $node->filter('img')->attr('src');
             $imageUrl = str_replace("s=40&", "s=160&", $imageUrl);
-            $contributors[] = (object)[
+            $contributors[] = (object) [
                 'userName' => $userId,
                 'userBaseUrl' => $userUrl,
                 'userImage' => $imageUrl,
             ];
         });
 
-        if (count($contributors) == 0) {
-
-            $node = $this->crawler->filter('.Details a')->first();
-
-
-            $userUrl = "https://github.com".$node->attr('href');
-            $imageUrl = $node->filter('img')->attr('src');
-            $imageUrl = str_replace("s=40&", "s=160&", $imageUrl);
-            $contributors[] = (object)[
-                'userName' => str_replace("/", "", $node->attr('href')),
-                'userBaseUrl' => $userUrl,
-                'userImage' => $imageUrl,
-            ];
-
-
-        }
 
         return $contributors;
     }
