@@ -4,45 +4,26 @@ namespace App\Services\Documents;
 
 use App\Exceptions\BadArgumentsException;
 use File;
-use Illuminate\Console\Command;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
 class GitUpdater implements UpdateInterface
 {
-    /**
-     * @var Location
-     */
-    protected $location;
-    /**
-     * @var Command
-     */
-    private $console;
 
     /**
      * @var string[]
      */
-    private $versions = [];
+    private array $versions = [];
 
-    private $branchPrefix = "";
-
-    /**
-     * DocsHandler constructor.
-     * @param ConsoleOutput $console
-     * @param Location $location
-     */
-    public function __construct(ConsoleOutput $console, Location $location)
+    public function __construct(protected ConsoleOutput $console, protected Location $location)
     {
-        $this->console = $console;
-        $this->location = $location;
         $this->versions = array_keys(config('docs.versions'));
     }
 
     /**
      * @throws BadArgumentsException
      */
-    public function updateOnlyKoreanManualGit()
+    public function updateOnlyKoreanManualGit(): void
     {
-
         $this->location->setLanguage("ko");
         $this->updateAllVersion();
     }
@@ -50,16 +31,14 @@ class GitUpdater implements UpdateInterface
     /**
      * @throws BadArgumentsException
      */
-    public function updateWithKoreanManualGit()
+    public function updateWithKoreanManualGit(): void
     {
-
         $this->location->setLanguage("en");
         $this->updateAllVersion();
     }
 
-    public function updateBaseGit()
+    public function updateBaseGit(): void
     {
-
         $exitCheckDir = $this->location->getBaseLocation();
 
         if (!File::exists($exitCheckDir)) {
@@ -77,7 +56,6 @@ class GitUpdater implements UpdateInterface
     protected function updateAllVersion(): void
     {
         foreach ($this->versions as $version) {
-
             $this->location->setVersion($version);
 
             $this->initializeVersionDirectory($version);
@@ -88,25 +66,20 @@ class GitUpdater implements UpdateInterface
     }
 
 
-    /**
-     * @param $version
-     * @return string
-     */
-    private function getVersionDirectoryPath($version): string
+    private function getVersionDirectoryPath(string $version): string
     {
-
         $this->location->setVersion($version);
         return $this->location->getVersionLocation();
     }
 
-    private function getVersionBranch($version)
+    private function getVersionBranch(string $version): string
     {
         $this->location->setVersion($version);
-        return $this->location->getBranch($version);
+        return $this->location->getBranch();
     }
 
 
-    private function updateDocument($version)
+    private function updateDocument($version): void
     {
         $this->console->writeln(exec(sprintf("cd %s && git checkout %s && git pull 2>&1",
                 $this->getVersionDirectoryPath($version),
@@ -115,9 +88,6 @@ class GitUpdater implements UpdateInterface
         );
     }
 
-    /**
-     * @param string $version
-     */
     protected function initializeVersionDirectory(string $version): void
     {
         $gitDir = $this->location->getBaseLocation();

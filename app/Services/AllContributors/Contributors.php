@@ -8,31 +8,15 @@ use stdClass;
 
 class Contributors
 {
-    /**
-     * @var EmojiConverter
-     */
-    protected $emojiConverter;
-
-    /**
-     * @var string
-     */
-    private $baseUrl = "https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc";
-
-    /**
-     * @var Client
-     */
-    private $guzzle;
+    private string $baseUrl = "https://raw.githubusercontent.com/laravelkr/docs/master/.all-contributorsrc";
 
 
-    public function __construct(Client $guzzle, EmojiConverter $emojiConverter)
+    public function __construct(protected Client $guzzle, protected EmojiConverter $emojiConverter)
     {
-        $this->guzzle = $guzzle;
-        $this->emojiConverter = $emojiConverter;
     }
 
     public function getHtml(): string
     {
-
         $contributors = $this->getDefaultData();
 
         $html = $this->convertHtml(json_decode($contributors));
@@ -40,9 +24,6 @@ class Contributors
         return $html;
     }
 
-    /**
-     * @return string
-     */
     private function getDefaultData(): string
     {
         return $this->guzzle->get($this->baseUrl)->getBody()->getContents();
@@ -50,7 +31,6 @@ class Contributors
 
     private function convertHtml(stdClass $contributors): string
     {
-
         $return = "";
 
 
@@ -63,12 +43,9 @@ class Contributors
                 $return .= "</span>";
             }
             $return .= "</div>";
-
         }
 
         return $return;
-
     }
-
 
 }

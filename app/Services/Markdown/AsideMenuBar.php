@@ -8,18 +8,16 @@
 
 namespace App\Services\Markdown;
 
-use function Couchbase\defaultDecoder;
 use Spatie\Menu\Laravel\Link;
 use Spatie\Menu\Laravel\Menu;
 
 class AsideMenuBar
 {
-    protected $asideMenuBar;
 
     /*
      * Main Aside Bar
      */
-    protected $mainMenu = [
+    protected array $mainMenu = [
         '/home' => ['Text' => 'Home', 'Attribute' => []],
         'https://github.com/laravelkr/website/issues/2' => ['Text' => '라라벨로 만든 사이트', 'Attribute' => []],
         'https://github.com/laravelkr/website/issues/3' => ['Text' => '기타 학습자료', 'Attribute' => []],
@@ -29,16 +27,19 @@ class AsideMenuBar
             'Attribute' => [],
             'subMenu' =>
                 [
-                    'https://www.facebook.com/groups/laravelkorea/' => ['Text' => '라라벨 코리아', 'Attribute' => ['target', '_blank']],
-                    'https://www.facebook.com/groups/655071604594451/' => ['Text' => '모던 PHP 유저 그룹', 'Attribute' => ['target', '_blank']],
+                    'https://www.facebook.com/groups/laravelkorea/' => [
+                        'Text' => '라라벨 코리아', 'Attribute' => ['target', '_blank'],
+                    ],
+                    'https://www.facebook.com/groups/655071604594451/' => [
+                        'Text' => '모던 PHP 유저 그룹', 'Attribute' => ['target', '_blank'],
+                    ],
                     'https://open.kakao.com/o/g3dWlf0/' => ['Text' => '카카오 오픈채팅', 'Attribute' => ['target', '_blank']],
-                ]
+                ],
         ],
     ];
 
-    public function __construct(Menu $asideMenuBar)
+    public function __construct(protected Menu $asideMenuBar)
     {
-        $this->asideMenuBar = $asideMenuBar;
     }
 
     public function getAsideList(): string

@@ -9,6 +9,7 @@
 namespace App\Services\Markdown;
 
 
+use App\Exceptions\BadArgumentsException;
 use App\Services\Documents\Location;
 use File;
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
@@ -16,31 +17,23 @@ use Parsedown;
 
 class DocumentParser
 {
-    /**
-     * @var Location
-     */
-    private $location;
-    private $parseDown;
 
-    private $version;
-    private $language;
+    private string $version;
+    private string $language;
 
-    public function __construct(Parsedown $parseDown, Location $location)
+    public function __construct(protected Parsedown $parseDown, protected Location $location)
     {
-        $this->parseDown = $parseDown;
-        $this->location = $location;
     }
 
 
     /**
-     * @param string $filename
+     * @param  string  $filename
      * @return string
      * @throws FileNotFoundException
-     * @throws \App\Exceptions\BadArgumentsException
+     * @throws BadArgumentsException
      */
     public function getMarkdownDocument(string $filename): string
     {
-
         $this->location->setVersion($this->version);
         $this->location->setLanguage($this->language);
         $fileLocation = $this->location->getFileLocation($filename);
@@ -59,32 +52,21 @@ class DocumentParser
     }
 
 
-    /**
-     * @param string $fileContent
-     * @return string
-     */
     private function replaceVersionText(string $fileContent): string
     {
         return str_replace('{{version}}', $this->version, $fileContent);
     }
 
-    private function parsingMarkdown(string $markdown)
+    private function parsingMarkdown(string $markdown): string
     {
-
         return $this->parseDown->parse($markdown);
     }
 
-    /**
-     * @param string $version
-     */
     public function setVersion(string $version): void
     {
         $this->version = $version;
     }
 
-    /**
-     * @param string $language
-     */
     public function setLanguage(string $language): void
     {
         $this->language = $language;

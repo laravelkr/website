@@ -11,13 +11,8 @@ namespace App\Services\Navigator\Dto;
 
 class LinkLocationDto
 {
-    public $title;
-    public $doc;
-
-    public function __construct(string $title,string $doc)
+    public function __construct(public readonly string $title, public readonly string $doc)
     {
-        $this->title = $title;
-        $this->doc = $doc;
     }
 
 }

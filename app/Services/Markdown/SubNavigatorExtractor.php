@@ -16,24 +16,17 @@ use Symfony\Component\DomCrawler\Crawler;
 class SubNavigatorExtractor
 {
 
-    /**
-     * @var Crawler
-     */
-    private $crawler;
-
-    public function __construct(Crawler $crawler)
+    public function __construct(protected Crawler $crawler)
     {
-        $this->crawler = $crawler;
     }
 
     /**
-     * @param string $bodyHtml
+     * @param  string  $bodyHtml
      * @return string
      * @throws BadArgumentsException
      */
     public function extract(string $bodyHtml): string
     {
-
         if (empty($bodyHtml)) {
             throw new BadArgumentsException();
         }
@@ -42,7 +35,7 @@ class SubNavigatorExtractor
         $this->crawler->addHtmlContent($bodyHtml);
         try {
             return $this->crawler->filter('h1+ul')->html();
-        } catch (InvalidArgumentException $exception) {
+        } catch (InvalidArgumentException) {
         }
 
         return "";

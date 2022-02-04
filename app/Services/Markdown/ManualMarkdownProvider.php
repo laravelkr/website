@@ -10,63 +10,48 @@ namespace App\Services\Markdown;
 
 
 use App\Exceptions\BadArgumentsException;
+use Illuminate\Contracts\Filesystem\FileNotFoundException;
 
 abstract class ManualMarkdownProvider
 {
-    protected $version;
-    protected $documentFilename;
-    protected $indexDocumentName = "documentation";
-    /**
-     * @var DocumentParser
-     */
-    protected $documentProvider;
-    /**
-     * @var SubNavigatorExtractor
-     */
-    protected $subNavigatorExtractor;
-    protected $parsedDocumentHtml;
-    protected $indexDocumentParsedHtml;
-    protected $language;
+    protected string $version;
+    protected string $documentFilename;
+    protected ?string $parsedDocumentHtml;
+    protected ?string $indexDocumentParsedHtml;
+    protected string $language;
 
     public function __construct(
-        DocumentParser $documentProvider,
-        SubNavigatorExtractor $subNavigatorExtractor
+        protected DocumentParser $documentProvider,
+        protected SubNavigatorExtractor $subNavigatorExtractor
     ) {
-        $this->documentProvider = $documentProvider;
-        $this->subNavigatorExtractor = $subNavigatorExtractor;
     }
 
-    /**
-     * @param string $language
-     * @throws BadArgumentsException
-     */
-    public function setLanguage(string $language)
+    public function setLanguage(string $language): void
     {
         $this->clearParsedDocumentHtml();
         $this->language = $language;
     }
 
-    protected function clearParsedDocumentHtml()
+    protected function clearParsedDocumentHtml(): void
     {
         $this->parsedDocumentHtml = null;
     }
 
-    public function setVersion(string $version)
+    public function setVersion(string $version): void
     {
         $this->indexDocumentParsedHtml = null;
         $this->version = $version;
     }
 
-    public function setDocumentFilename(string $documentMarkdownFilename)
+    public function setDocumentFilename(string $documentMarkdownFilename): void
     {
-
         $this->clearParsedDocumentHtml();
         $this->documentFilename = $documentMarkdownFilename;
     }
 
     /**
      * @return string
-     * @throws BadArgumentsException
+     * @throws BadArgumentsException|FileNotFoundException
      */
     public function getContent(): string
     {
@@ -75,7 +60,6 @@ abstract class ManualMarkdownProvider
         }
 
         if (empty($this->parsedDocumentHtml)) {
-
             $html = $this->getMarkDownDocsContent($this->documentFilename);
             $html = $this->beautifyDocument($html);
             $this->parsedDocumentHtml = $html;
@@ -84,7 +68,13 @@ abstract class ManualMarkdownProvider
         return $this->parsedDocumentHtml;
     }
 
-    protected function getMarkDownDocsContent($fileName)
+    /**
+     * @param $fileName
+     * @return string
+     * @throws BadArgumentsException
+     * @throws FileNotFoundException
+     */
+    protected function getMarkDownDocsContent($fileName): string
     {
         $this->documentProvider->setVersion($this->version);
         $this->documentProvider->setLanguage($this->language);

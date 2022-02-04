@@ -16,7 +16,6 @@ class LinkExtractor
 
     public function extractToArray(string $html): array
     {
-
         //API 문서링크는 의도적으로 제외
         preg_match_all('/href="\\/(.*)\\/(.*)\\/(?P<doc>[a-zA-Z-]*)">(?P<name>.*)<\\/a>/', $html, $matches);
 

@@ -6,5 +6,5 @@ namespace App\Services\Documents;
 
 interface UpdateDateInterface
 {
-    public function getDocsUpdatedAt($lang, $version, $doc);
+    public function getDocsUpdatedAt(string $lang, string $version, string $doc);
 }

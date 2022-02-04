@@ -14,8 +14,6 @@ class Beautifier
 
     public static function beautifyNavigation(string $html): string
     {
-
-
         $html = preg_replace('/<ul>/', '<ul class="nav">', $html, 1);
         $html = str_replace('<ul>', '<ul class="nav-item">', $html);
         $html = str_replace('<li><a href=', '<li ><a class="nav-link" href=', $html);
@@ -28,7 +26,6 @@ class Beautifier
 
     public static function beautifyArticle(string $html): string
     {
-
         $html = str_replace('<table>', '<table class="table table-hover">', $html);
         $html = preg_replace("/(<h[1-9]{1})>(.*)(<\\/h[1-9]{1}>)/",
             '\1 id="\2">\2\3', $html);

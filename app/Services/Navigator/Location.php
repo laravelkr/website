@@ -17,30 +17,24 @@ class Location
     /**
      * @var LinkLocationDto[]
      */
-    protected $links = [];
-    /**
-     * @var null|integer
-     */
-    protected $index = null;
+    protected array $links = [];
 
-    public function setLinks(array $links)
+    protected ?int $index = null;
+
+    public function setLinks(array $links): void
     {
         $this->links = $links;
     }
 
 
-    public function setNowDocumentIndex(string $doc)
+    public function setNowDocumentIndex(string $doc): void
     {
-
         foreach ($this->links as $index => $link) {
             if ($link->doc == $doc) {
-
                 $this->index = $index;
                 break;
             }
-
         }
-
     }
 
     public function getNowLink(): ?LinkLocationDto
@@ -59,7 +53,6 @@ class Location
 
     public function getNextLink(): ?LinkLocationDto
     {
-
         if (is_null($this->index) || $this->index == count($this->links) - 1) {
             return null;
         }

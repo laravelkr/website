@@ -13,9 +13,9 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
 class ManualNavigator extends ManualMarkdownProvider
 {
-    protected $documentFilename = "documentation";
+    protected string $documentFilename = "documentation";
 
-    public function setDocumentFilename(string $documentMarkdownFilename)
+    public function setDocumentFilename(string $documentMarkdownFilename): void
     {
         throw new BadRequestHttpException("네비게이션 마크다운 파일은 변경할 수 없습니다");
     }

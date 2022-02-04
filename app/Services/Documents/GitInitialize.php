@@ -7,26 +7,13 @@ use Symfony\Component\Console\Output\ConsoleOutput;
 
 class GitInitialize implements InitializeInterface
 {
-    /**
-     * @var Location
-     */
-    protected $location;
-    private $console;
 
-
-    /**
-     * DocsHandler constructor.
-     * @param ConsoleOutput $console
-     * @param Location $location
-     */
-    public function __construct(ConsoleOutput $console, Location $location)
+    public function __construct(protected ConsoleOutput $console, protected Location $location)
     {
-        $this->console = $console;
-        $this->location = $location;
     }
 
 
-    public function initialize()
+    public function initialize(): void
     {
         $exitCheckDir = $this->location->getBaseLocation();
 
