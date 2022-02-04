@@ -18,3 +18,5 @@ public/css/*
 public/js/*
 public/mix-manifest.json
 rr
+.phpstorm.meta.php
+_ide_helper.php
