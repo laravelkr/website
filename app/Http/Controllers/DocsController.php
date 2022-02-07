@@ -95,7 +95,7 @@ class DocsController extends Controller
             try {
                 $enUpdated = $this->documentUpdatedDateChecker->getDocsUpdatedAt('en', $version, $doc);
                 $enTimeAgoUpdate = Carbon::createFromFormat(DateTimeInterface::ATOM, $enUpdated)->diffForHumans();
-            } catch (CommitInformationNotFoundException $exception) {
+            } catch (CommitInformationNotFoundException) {
                 $enUpdated = null;
                 $enTimeAgoUpdate = null;
             }
