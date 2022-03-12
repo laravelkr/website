@@ -63,6 +63,11 @@ return [
             'lts' => false,
             'in_translation' => false,
         ],
+        '9.x' => [
+            'deprecatedAt' => '2024-02-08',
+            'lts' => false,
+            'in_translation' => true,
+        ],
     ],
     'default' => '8.x',
     'resource_root' => 'documents',
