@@ -45,7 +45,8 @@ class DocumentParser
         $fileContent = file_get_contents($fileLocation);
 
         $replacedVersionText = $this->replaceVersionText($fileContent);
-        $parsedContent = $this->parsingMarkdown($replacedVersionText);
+        $replacedVersionText = str_replace('```noting','```',$replacedVersionText);
+        $parsedContent = $this->parsingMarkdown($markdown);
 
 
         return $parsedContent;
