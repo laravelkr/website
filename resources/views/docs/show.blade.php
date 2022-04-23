@@ -44,8 +44,11 @@
 @endsection
 
 @section('last-modify')
-    <div style="width:100%">
-
+    <div class="col-lg-12">
+        <a href="https://modernpug.org/recruits" class="btn btn-sm btn-outline-primary" target="_blank">
+            <i class="fa fa-external-link"></i>
+            공고 등록하기
+        </a>
         @if($enUpdated)
             최종 수정일 - &nbsp;
             <a href="https://laravel.com/docs/{{$version}}/{{$doc}}" target="_blank" style="cursor: pointer;"
@@ -60,10 +63,12 @@
             </a>
             <span class="btn btn-outline-primary btn-sm pull-right" id="show-eng-docs">영문같이보기</span>
         @endif
+    </div>
 
+    <div class="col-lg-12">
         @foreach(collect($recruits->data)->shuffle()->take(5) as $recruit)
             <a href="{{ $recruit->link }}" target="_blank"
-               class="btn btn-sm btn-outline-dark d-sm-inline-block @if($loop->first) d-block @else d-none @endif ">
+               class="btn btn-sm btn-outline-dark mt-1 d-sm-inline-block @if($loop->first) d-block @else d-none @endif ">
                 <i class="fa fa-external-link"></i>
                 {{ $recruit->title }}
                 <small>
