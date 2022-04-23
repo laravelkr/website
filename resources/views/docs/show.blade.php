@@ -55,16 +55,19 @@
         @endif
 
         <div class="pull-right">
+
+            @if($enUpdated)
                 <span class="btn btn-outline-primary btn-sm" id="show-eng-docs">
                     <i class="fa fa-book"></i>
                     영문 같이보기
                 </span>
-            <a class="btn btn-outline-danger btn-sm"
-               href="https://laravel.com/docs/{{$version }}/{{ $doc }}"
-               target="_blank">
-                <i class="fa fa-external-link"></i>
-                영어 원문보기
-            </a>
+                <a class="btn btn-outline-danger btn-sm"
+                   href="https://laravel.com/docs/{{$version }}/{{ $doc }}"
+                   target="_blank">
+                    <i class="fa fa-external-link"></i>
+                    영어 원문보기
+                </a>
+            @endif
             <a href="https://modernpug.org/recruits" class="btn btn-sm btn-outline-dark" target="_blank">
                 <i class="fa fa-external-link"></i>
                 채용공고 더보기/등록하기
