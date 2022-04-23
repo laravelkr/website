@@ -5,6 +5,8 @@
      * @var LinkLocationDto $nowLink
      * @var LinkLocationDto $prevLink
      * @var LinkLocationDto $nextLink
+     * @var \App\Services\ModernPug\Dto\Response $recruits
+     * @var \App\Services\ModernPug\Dto\ResponseData $recruit
      */
  use App\Services\Navigator\Dto\LinkLocationDto;
 @endphp
@@ -19,15 +21,17 @@
 
 
 @section('head')
-    <meta name="docsearch:version" content="{{ $version }}" />
-    <meta name="docsearch:language" content="{{ app()->getLocale() }}" />
+    <meta name="docsearch:version" content="{{ $version }}"/>
+    <meta name="docsearch:language" content="{{ app()->getLocale() }}"/>
 
     @if(config('algoria.docsearch.apiKey'))
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css"/>
     @endif
 
     <style>
-        article img {max-width: 100%;}
+        article img {
+            max-width: 100%;
+        }
     </style>
 @endsection
 
@@ -43,19 +47,31 @@
     <div style="width:100%">
 
         @if($enUpdated)
-        최종 수정일 - &nbsp;
-        <a href="https://laravel.com/docs/{{$version}}/{{$doc}}" target="_blank" style="cursor: pointer;"
-           title="{{$enUpdated}}"> 영어 : {{$enTimeAgoUpdate}} </a>
-        &nbsp;/&nbsp;
-        <a style="cursor: pointer;" title="{{$krUpdated}}"> 한글 : {{$krTimeAgoUpdate}} </a>
+            최종 수정일 - &nbsp;
+            <a href="https://laravel.com/docs/{{$version}}/{{$doc}}" target="_blank" style="cursor: pointer;"
+               title="{{$enUpdated}}"> 영어 : {{$enTimeAgoUpdate}} </a>
+            &nbsp;/&nbsp;
+            <a style="cursor: pointer;" title="{{$krUpdated}}"> 한글 : {{$krTimeAgoUpdate}} </a>
 
-        <a class="btn btn-outline-danger btn-sm pull-right" href="https://laravel.com/docs/{{$version }}/{{ $doc }}"
-           target="_blank">
-            영어 원문보기
-            <i class="fa fa-external-link" aria-hidden="true"></i>
-        </a>
-        <span class="btn btn-outline-primary btn-sm pull-right" id="show-eng-docs">영문같이보기</span>
+            <a class="btn btn-outline-danger btn-sm pull-right" href="https://laravel.com/docs/{{$version }}/{{ $doc }}"
+               target="_blank">
+                영어 원문보기
+                <i class="fa fa-external-link" aria-hidden="true"></i>
+            </a>
+            <span class="btn btn-outline-primary btn-sm pull-right" id="show-eng-docs">영문같이보기</span>
         @endif
+
+        @foreach(collect($recruits->data)->shuffle()->take(5) as $recruit)
+            <a href="{{ $recruit->link }}" target="_blank"
+               class="btn btn-sm btn-outline-dark d-sm-inline-block @if($loop->first) d-block @else d-none @endif ">
+                <i class="fa fa-external-link"></i>
+                {{ $recruit->title }}
+                <small>
+                    by
+                    {{ $recruit->company_name }}
+                </small>
+            </a>
+        @endforeach
     </div>
 @endsection
 
@@ -112,19 +128,20 @@
 
 
     @if(config('algoria.docsearch.apiKey'))
-    <!-- at the end of the BODY -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
-    <script type="text/javascript"> docsearch({
-            apiKey: '{{ config('algoria.docsearch.apiKey') }}',
-            indexName: '{{ config('algoria.docsearch.indexName') }}',
-            inputSelector: '#docsearch-input',
-            algoliaOptions: {
-                facetFilters: ["version:{{ $version }}", "language:ko"],
-                hitsPerPage: 8
-            },
-            debug: false // Set debug to true if you want to inspect the dropdown
-        });
-    </script>
+        <!-- at the end of the BODY -->
+        <script type="text/javascript"
+                src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+        <script type="text/javascript"> docsearch({
+                apiKey: '{{ config('algoria.docsearch.apiKey') }}',
+                indexName: '{{ config('algoria.docsearch.indexName') }}',
+                inputSelector: '#docsearch-input',
+                algoliaOptions: {
+                    facetFilters: ["version:{{ $version }}", "language:ko"],
+                    hitsPerPage: 8
+                },
+                debug: false // Set debug to true if you want to inspect the dropdown
+            });
+        </script>
     @endif
 
 @endsection

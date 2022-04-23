@@ -10,13 +10,13 @@ use App\Services\Github\ContributorSearcher;
 use App\Services\Markdown\AsideMenuBar;
 use App\Services\Markdown\ManualArticle;
 use App\Services\Markdown\ManualNavigator;
+use App\Services\ModernPug\Dto\Response;
+use App\Services\ModernPug\Recruits;
 use App\Services\Navigator\LinkExtractor;
 use App\Services\Navigator\Location;
 use Carbon\Carbon;
 use DateTimeInterface;
 use GuzzleHttp\Exception\ConnectException;
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Cache;
 use Kamaln7\Toastr\Facades\Toastr;
 use Throwable;
@@ -35,14 +35,15 @@ class DocsController extends Controller
         protected LinkExtractor $navigatorLinkExtractor,
         protected Location $navigatorLinkLocationProvider,
         protected ContributorSearcher $contributorSearcher,
-        protected AsideMenuBar $asideMenuBar
+        protected AsideMenuBar $asideMenuBar,
+        protected Recruits $recruits
     ) {
         parent::__construct();
 
         $this->defaultVersions = config('docs.default');
     }
 
-    public function showDocs($version, $doc = null): View|RedirectResponse
+    public function showDocs($version, $doc = null)
     {
         //버전을 지정하지 않고 문서로 바로 접속한 경우
         if ($doc === null && $this->isDocument($version)) {
@@ -132,6 +133,7 @@ class DocsController extends Controller
                 'prevLink', 'nextLink', 'notificationMessage');
         });
 
+        $args['recruits'] = $this->getRecruits();
         $args['notices'] = Notice::getAll();
         $args['banners'] = Banner::getAll();
         $args['asidePageList'] = $this->asideMenuBar->getAsideList();
@@ -169,5 +171,12 @@ class DocsController extends Controller
     protected function isInvalidVersion(string $version): bool
     {
         return $this->isValidVersion($version) === false;
+    }
+
+    protected function getRecruits(): Response
+    {
+        return Cache::remember('document.recruits', self::CACHE_SECONDS, function () {
+            return $this->recruits->getAll();
+        });
     }
 }
