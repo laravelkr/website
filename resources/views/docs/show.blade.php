@@ -45,24 +45,31 @@
 
 @section('last-modify')
     <div class="col-lg-12">
-        <a href="https://modernpug.org/recruits" class="btn btn-sm btn-outline-primary" target="_blank">
-            <i class="fa fa-external-link"></i>
-            공고 등록하기
-        </a>
         @if($enUpdated)
-            최종 수정일 - &nbsp;
-            <a href="https://laravel.com/docs/{{$version}}/{{$doc}}" target="_blank" style="cursor: pointer;"
-               title="{{$enUpdated}}"> 영어 : {{$enTimeAgoUpdate}} </a>
-            &nbsp;/&nbsp;
-            <a style="cursor: pointer;" title="{{$krUpdated}}"> 한글 : {{$krTimeAgoUpdate}} </a>
-
-            <a class="btn btn-outline-danger btn-sm pull-right" href="https://laravel.com/docs/{{$version }}/{{ $doc }}"
-               target="_blank">
-                영어 원문보기
-                <i class="fa fa-external-link" aria-hidden="true"></i>
+            최종 수정일 -
+            <a href="https://laravel.com/docs/{{$version}}/{{$doc}}" target="_blank" title="{{$enUpdated}}">
+                영어 : {{$enTimeAgoUpdate}}
             </a>
-            <span class="btn btn-outline-primary btn-sm pull-right" id="show-eng-docs">영문같이보기</span>
+            /
+            <span style="cursor: pointer;" title="{{$krUpdated}}"> 한글 : {{$krTimeAgoUpdate}}</span>
         @endif
+
+        <div class="pull-right">
+                <span class="btn btn-outline-primary btn-sm" id="show-eng-docs">
+                    <i class="fa fa-book"></i>
+                    영문 같이보기
+                </span>
+            <a class="btn btn-outline-danger btn-sm"
+               href="https://laravel.com/docs/{{$version }}/{{ $doc }}"
+               target="_blank">
+                <i class="fa fa-external-link"></i>
+                영어 원문보기
+            </a>
+            <a href="https://modernpug.org/recruits" class="btn btn-sm btn-outline-dark" target="_blank">
+                <i class="fa fa-external-link"></i>
+                채용공고 더보기/등록하기
+            </a>
+        </div>
     </div>
 
     <div class="col-lg-12">
