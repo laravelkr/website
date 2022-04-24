@@ -21,12 +21,12 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.0",
         "netresearch/jsonmapper": "^4.0",
-        "oriceon/toastr-5-laravel": "dev-master",
         "sentry/sentry-laravel": "^2.4",
         "spatie/laravel-menu": "^3.3",
         "spiral/roadrunner": "^2.0",
         "symfony/css-selector": "^5.2",
-        "symfony/dom-crawler": "^5.2"
+        "symfony/dom-crawler": "^5.2",
+        "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",

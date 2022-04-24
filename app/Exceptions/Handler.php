@@ -72,7 +72,7 @@ class Handler extends ExceptionHandler
 
             $version = $request->route()->parameter('version');
             $doc = $request->route()->parameter('doc');
-            \Toastr::error($doc . "는 " . $version . " 버전에 존재하지 않는 문서입니다",null, [
+            toastr()->error($doc . "는 " . $version . " 버전에 존재하지 않는 문서입니다",null, [
                 "positionClass" => "toast-top-full-width",
             ]);
             return redirect(route('docs.show', [$version]));

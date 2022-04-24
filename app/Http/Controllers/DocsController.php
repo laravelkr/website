@@ -18,7 +18,6 @@ use Carbon\Carbon;
 use DateTimeInterface;
 use GuzzleHttp\Exception\ConnectException;
 use Illuminate\Support\Facades\Cache;
-use Kamaln7\Toastr\Facades\Toastr;
 use Throwable;
 
 class DocsController extends Controller
@@ -57,7 +56,7 @@ class DocsController extends Controller
 
         //번역중인 버전에 대한 안내표시
         if ($this->isInTranslationVersion($version)) {
-            Toastr::info($version." 문서는 현재 번역 중입니다", null, [
+            toastr()->info($version." 문서는 현재 번역 중입니다", null, [
                 "positionClass" => "toast-top-full-width",
             ]);
 
