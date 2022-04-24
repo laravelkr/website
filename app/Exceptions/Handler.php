@@ -4,14 +4,18 @@ namespace App\Exceptions;
 
 use Illuminate\Contracts\Filesystem\FileNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Http\Request;
+use Sentry\State\Scope;
 use Throwable;
+
+use function Sentry\configureScope;
 
 class Handler extends ExceptionHandler
 {
     /**
      * A list of the exception types that are not reported.
      *
-     * @var array
+     * @var array<int, class-string<Throwable>>
      */
     protected $dontReport = [
         FileNotFoundException::class
@@ -20,9 +24,10 @@ class Handler extends ExceptionHandler
     /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
-     * @var array
+     * @var array<int, string>
      */
     protected $dontFlash = [
+        'current_password',
         'password',
         'password_confirmation',
     ];
@@ -32,52 +37,30 @@ class Handler extends ExceptionHandler
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
-        //
-    }
+        $this->reportable(function (Throwable $e) {
+            if ($this->shouldReport($e) && app()->bound('sentry')) {
+                configureScope(function (Scope $scope): void {
+                    $referer = request()->headers->get('referer');
+                    if ($referer) {
+                        $scope->setTag('referer', $referer);
+                    }
+                });
+                app('sentry')->captureException($e);
+            }
+        });
 
-    /**
-     * Report or log an exception.
-     *
-     * @param  \Throwable $exception
-     * @return void
-     *
-     * @throws \Throwable
-     */
-    public function report(Throwable $exception)
-    {
-
-        if (app()->bound('sentry') && $this->shouldReport($exception)) {
-            app('sentry')->captureException($exception);
-        }
-
-
-        parent::report($exception);
-    }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Illuminate\Http\Response
-     *
-     * @throws \Throwable
-     */
-    public function render($request, Throwable $exception)
-    {
-        if ($exception instanceof FileNotFoundException) {
-
-
-            $version = $request->route()->parameter('version');
-            $doc = $request->route()->parameter('doc');
-            toastr()->error($doc . "는 " . $version . " 버전에 존재하지 않는 문서입니다",null, [
+        $this->renderable(function (FileNotFoundException $exception, Request $request) {
+            $version = $request->route()?->parameter('version');
+            $doc = $request->route()?->parameter('doc');
+            toastr()->error($doc."는 ".$version." 버전에 존재하지 않는 문서입니다", "", [
                 "positionClass" => "toast-top-full-width",
             ]);
-            return redirect(route('docs.show', [$version]));
-        }
 
-        return parent::render($request, $exception);
+            return redirect(route('docs.show', [$version]));
+        });
     }
+
+
 }

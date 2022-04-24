@@ -56,7 +56,7 @@ class DocsController extends Controller
 
         //번역중인 버전에 대한 안내표시
         if ($this->isInTranslationVersion($version)) {
-            toastr()->info($version." 문서는 현재 번역 중입니다", null, [
+            toastr()->info($version." 문서는 현재 번역 중입니다", "", [
                 "positionClass" => "toast-top-full-width",
             ]);
 

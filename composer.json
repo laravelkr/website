@@ -1,10 +1,7 @@
 {
     "name": "laravel/laravel",
     "description": "The Laravel Framework.",
-    "keywords": [
-        "framework",
-        "laravel"
-    ],
+    "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
     "require": {
@@ -13,28 +10,28 @@
         "ext-json": "*",
         "ext-pcre": "*",
         "erusev/parsedown-extra": "^0.8.1",
-        "fideloper/proxy": "^4.4",
-        "fruitcake/laravel-cors": "^2.0",
-        "guzzlehttp/guzzle": "^7.0.1",
-        "laravel/framework": "^8.12",
+        "fruitcake/laravel-cors": "^2.0.5",
+        "guzzlehttp/guzzle": "^7.2",
+        "laravel/framework": "^9.0",
         "laravel/octane": "^1.0",
-        "laravel/tinker": "^2.5",
-        "laravel/ui": "^3.0",
+        "laravel/sanctum": "^2.14",
+        "laravel/tinker": "^2.7",
         "netresearch/jsonmapper": "^4.0",
         "sentry/sentry-laravel": "^2.4",
-        "spatie/laravel-menu": "^3.3",
+        "spatie/laravel-menu": "^4.1",
         "spiral/roadrunner": "^2.0",
-        "symfony/css-selector": "^5.2",
-        "symfony/dom-crawler": "^5.2",
+        "symfony/css-selector": "^6.0",
+        "symfony/dom-crawler": "^6.0",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.10",
-        "facade/ignition": "^2.5",
         "fakerphp/faker": "^1.9.1",
-        "mockery/mockery": "^1.4.2",
-        "nunomaduro/collision": "^5.0",
-        "phpunit/phpunit": "^9.3.3"
+        "laravel/sail": "^1.0.1",
+        "mockery/mockery": "^1.4.4",
+        "nunomaduro/collision": "^6.1",
+        "phpunit/phpunit": "^9.5.10",
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
@@ -54,6 +51,9 @@
         }
     },
     "scripts": {
+        "post-update-cmd": [
+            "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
+        ],
         "post-root-package-install": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
         ],
