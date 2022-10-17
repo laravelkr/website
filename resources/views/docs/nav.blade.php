@@ -30,7 +30,7 @@
         <li class="nav-item px-3">
             <a class="nav-link" href="https://discord.gg/9BuTr5K63g">
                 <i class="fab fa-discord"></i>
-                유저모임(discord)
+                유저모임(discord) + QNA
             </a>
         </li>
     </ul>

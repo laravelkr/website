@@ -90,7 +90,7 @@
                         <!-- Dropdown -->
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                유저 모임
+                                유저 모임 + Q&A
                             </a>
                             <div class="dropdown-menu">
                                 <a class="dropdown-item" href="https://discord.gg/9BuTr5K63g" target="_blank">
