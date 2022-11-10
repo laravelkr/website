@@ -26,11 +26,16 @@
                 스터디/행사
             </a>
         </li>
-        <!-- Dropdown -->
         <li class="nav-item px-3">
-            <a class="nav-link" href="https://discord.gg/9BuTr5K63g">
-                <i class="fab fa-discord"></i>
-                유저모임(discord) + QNA
+            <a class="nav-link text-primary" href="https://modernpug.org/recruits" target="_blank">
+                <i class="fa fa-user"></i>
+                구인구직
+            </a>
+        </li>
+        <li class="nav-item px-3">
+            <a class="nav-link text-primary" href="https://modernpug.org/threads" target="_blank">
+                <i class="fa fa-question"></i>
+                QNA
             </a>
         </li>
     </ul>

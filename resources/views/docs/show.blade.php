@@ -68,10 +68,6 @@
                     영어 원문보기
                 </a>
             @endif
-            <a href="https://modernpug.org/recruits" class="btn btn-sm btn-outline-dark" target="_blank">
-                <i class="fa fa-external-link"></i>
-                채용공고 더보기/등록하기
-            </a>
         </div>
     </div>
 

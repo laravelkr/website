@@ -87,17 +87,18 @@
                                 스터디/행사
                             </a>
                         </li>
-                        <!-- Dropdown -->
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                                유저 모임 + Q&A
+                        <li>
+                            <a href="https://modernpug.org/recruits" target="_blank">
+                                <i class="fa fa-user"></i>
+                                구인/구직
                             </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="https://discord.gg/9BuTr5K63g" target="_blank">
-                                    <i class="fab fa-discord"></i>
-                                    Discord
-                                </a>
-                            </div>
+                        </li>
+                        <!-- Dropdown -->
+                        <li>
+                            <a href="https://modernpug.org/threads" target="_blank">
+                                <i class="fa fa-question"></i>
+                                Q&A
+                            </a>
                         </li>
                         <li class="dropdown">
                             <a class="dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
