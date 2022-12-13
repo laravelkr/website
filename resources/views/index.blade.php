@@ -138,27 +138,6 @@
 
 <section class="default-banner active-blog-slider">
     <div class="item-slider relative"
-         style="background: url(/assets/vendor/adventure/images/pexels-photo-1181269.jpeg);background-size: cover;">
-        <div class="overlay" style="background: rgba(0,0,0,.7)"></div>
-        <div class="container">
-            <div class="row fullscreen justify-content-center align-items-center">
-                <div class="col-md-10 col-12">
-                    <div class="banner-content text-center mb-20">
-                        <a href="https://bit.ly/3ofdmrG" target="_blank">
-{{--                        <h4 class="text-white mb-20 text-uppercase">Discover the Colorful World</h4>--}}
-                        <h1 class="text-white mb-20 mt-80 text-uppercase">라라벨 Up & Running</h1>
-                        <p class="text-white">처음부터 제대로 배우는 라라벨</p>
-                        <img class="hello-illustration" src="//image.yes24.com/goods/95757831/800x0"
-                             style="max-width:50%; height:auto;margin:auto;">
-
-                        <span class="text-uppercase header-btn">구매하기</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="item-slider relative"
          style="background: url(/assets/vendor/adventure/images/pexels-photo-1181244.jpeg);background-size: cover;">
         <div class="overlay" style="background: rgba(0,0,0,.7)"></div>
         <div class="container">
@@ -206,7 +185,7 @@
                     <div class="banner-content text-center mb-20">
                         {{--<h3 class="text-uppercase text-white"></h1>--}}
                         <h1 class="text-white mb-20 mt-80 text-uppercase">클린 아키텍처 인 PHP</h1>
-                        <p class="text-white">이현석님의 신간 "클린 아키텍처 인 PHP"</p>
+                        <p class="text-white">이현석님의 도서 "클린 아키텍처 인 PHP"</p>
                         <img class="hello-illustration" src="https://d2sofvawe08yqg.cloudfront.net/cleanphp-korean/hero?1561303266"
                              style="max-width:50%; height:auto;margin:auto;">
                         <a href="https://leanpub.com/cleanphp-korean" target="_blank"
