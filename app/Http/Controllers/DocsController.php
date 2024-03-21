@@ -153,6 +153,10 @@ class DocsController extends Controller
 
     private function getDeprecatedNotificationMessage(string $version, string $doc): string
     {
+        if (config('docs.default') === $version) {
+            return "라라벨 ".$version."버전은 공식 유지보수 기간이 종료됨에 따라 한글 문서번역도 종료되었습니다. 최신 문서는 아직 번역이 진행중이니 영문 공식 홈페이지를 이용해주시기 바랍니다<br /><br /><a class='btn bg-white btn-outline-primary text-primary' href='https://laravel.com/docs/".$version."'>영문 홈페이지 바로가기</a>";
+        }
+
         return "라라벨 ".$version."버전은 공식 유지보수 기간이 종료됨에 따라 한글 문서번역도 종료되었습니다. 최신 데이터를 확인하기 위해서는 공식 홈페이지를 참조해주시기 바랍니다<br /><br /><a class='btn bg-white btn-outline-primary text-primary' href='".route('docs.show',
                 [config('docs.default'), $doc])."'>".config('docs.default')."버전 바로가기</a>";
     }
