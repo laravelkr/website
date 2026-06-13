@@ -139,7 +139,6 @@
 <script>hljs.initHighlightingOnLoad();</script>
 <script src="{{ mix('js/docs.js') }}"></script>
 
-@include('partials.toastr')
 @yield('footerScript')
 </body>
 </html>

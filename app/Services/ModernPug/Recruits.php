@@ -20,16 +20,20 @@ class Recruits
      */
     public function getAll()
     {
-        $recruits = $this->client->get('https://modernpug.org/api/v1/recruits', [
+        try {
+            $recruits = $this->client->get('https://modernpug.org/api/v1/recruits', [
 
-            RequestOptions::HEADERS => [
-                "Authorization" => "Bearer ".$this->token,
-            ],
-        ])
-            ->getBody()
-            ->getContents();
+                RequestOptions::HEADERS => [
+                    "Authorization" => "Bearer " . $this->token,
+                ],
+            ])
+                ->getBody()
+                ->getContents();
 
-        $json = json_decode($recruits, false, 512, JSON_THROW_ON_ERROR);
+            $json = json_decode($recruits, false, 512, JSON_THROW_ON_ERROR);
+        } catch (\Exception $exception) {
+            $json = new class { public array $data = []; };
+        }
 
         return $this->jsonMapper->map($json, new Response());
     }

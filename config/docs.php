@@ -78,6 +78,16 @@ return [
             'lts' => false,
             'in_translation' => true,
         ],
+        '12.x' => [
+            'deprecatedAt' => '2027-02-24',
+            'lts' => false,
+            'in_translation' => true,
+        ],
+        '13.x' => [
+            'deprecatedAt' => '2028-03-17',
+            'lts' => false,
+            'in_translation' => true,
+        ],
     ],
     'default' => '9.x',
     'resource_root' => 'documents',

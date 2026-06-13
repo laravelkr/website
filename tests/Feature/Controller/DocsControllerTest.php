@@ -9,38 +9,26 @@ use Tests\TestCase;
 
 class DocsControllerTest extends TestCase
 {
-
-    public function __construct($name = null, array $data = [], $dataName = '')
-    {
-        parent::__construct($name, $data, $dataName);
-
-        $this->createApplication();
-    }
-
-
     /**
      * @test
-     * @dataProvider versionProvider
-     * @param $version
-     * @param $urls
      */
-    public function check_all_document(string $version, array $urls)
+    public function check_all_document()
     {
+        foreach ($this->versionUrls() as [$version, $urls]) {
+            $this->get(route('docs.show', [$version]))->assertStatus(200);
 
+            $url = Arr::random($urls);
 
-        $this->get(route('docs.show', [$version]))->assertStatus(200);
-
-        $url = Arr::random($urls);
-
-        if (Str::endsWith($url, "/api")) {
-            $this->get($url)->assertRedirect();
-        } else {
-            $this->get($url)->assertOk();
+            if (Str::endsWith($url, "/api")) {
+                $this->get($url)->assertRedirect();
+            } else {
+                $this->get($url)->assertOk();
+            }
         }
     }
 
 
-    public function versionProvider()
+    private function versionUrls()
     {
 
         $return = [];

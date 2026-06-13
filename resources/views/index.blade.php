@@ -459,6 +459,5 @@
 <script src="/assets/vendor/adventure/js/jquery.counterup.min.js"></script>
 <script src="/assets/vendor/adventure/js/waypoints.min.js"></script>
 <script src="/assets/vendor/adventure/js/main.js"></script>
-@include('partials.toastr')
 </body>
 </html>

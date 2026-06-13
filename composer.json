@@ -5,33 +5,31 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "^8.2",
+        "php": "^8.5",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-pcre": "*",
-        "erusev/parsedown-extra": "^0.8.1",
-        "fruitcake/laravel-cors": "^2.0.5",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^9.0",
-        "laravel/octane": "^1.0",
-        "laravel/sanctum": "^2.14",
-        "laravel/tinker": "^2.7",
-        "netresearch/jsonmapper": "^4.0",
-        "sentry/sentry-laravel": "^2.4",
-        "spatie/laravel-menu": "^4.1",
-        "spiral/roadrunner": "^2.0",
-        "symfony/css-selector": "^6.0",
-        "symfony/dom-crawler": "^6.0",
-        "yoeunes/toastr": "^1.2"
+        "erusev/parsedown-extra": "^0.9",
+        "guzzlehttp/guzzle": "^7.11",
+        "laravel/framework": "^13.0",
+        "laravel/octane": "^2.17",
+        "laravel/sanctum": "^4.3",
+        "laravel/tinker": "^3.0",
+        "netresearch/jsonmapper": "^5.0",
+        "php-flasher/flasher-toastr-laravel": "^2.6",
+        "sentry/sentry-laravel": "^4.26",
+        "spatie/laravel-menu": "^4.2",
+        "spiral/roadrunner": "^2025.1",
+        "symfony/css-selector": "^8.1",
+        "symfony/dom-crawler": "^8.1"
     },
     "require-dev": {
-        "barryvdh/laravel-ide-helper": "^2.10",
-        "fakerphp/faker": "^1.9.1",
-        "laravel/sail": "^1.0.1",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^6.1",
-        "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0"
+        "barryvdh/laravel-ide-helper": "^3.7",
+        "fakerphp/faker": "^1.24",
+        "laravel/sail": "^1.62",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.9",
+        "phpunit/phpunit": "^13.2"
     },
     "autoload": {
         "psr-4": {
@@ -62,7 +60,8 @@
         ],
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan flasher:install"
         ]
     },
     "config": {

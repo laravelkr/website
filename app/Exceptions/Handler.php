@@ -54,7 +54,7 @@ class Handler extends ExceptionHandler
         $this->renderable(function (FileNotFoundException $exception, Request $request) {
             $version = $request->route()?->parameter('version');
             $doc = $request->route()?->parameter('doc');
-            toastr()->error($doc."는 ".$version." 버전에 존재하지 않는 문서입니다", "", [
+            toastr()->error($doc."는 ".$version." 버전에 존재하지 않는 문서입니다", [
                 "positionClass" => "toast-top-full-width",
             ]);
 
